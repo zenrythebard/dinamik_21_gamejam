@@ -377,14 +377,14 @@ blend_point_4/pos = Vector2(0, 0.2)
 blend_point_4/name = &"walk_forward"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3388h"]
-graph_offset = Vector2(-17.713135, 109.98153)
+graph_offset = Vector2(90.286865, 75.58153)
 nodes/output/position = Vector2(1104, 96)
 nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_dahie")
 nodes/walk/position = Vector2(528, 80)
 nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_bs657")
 nodes/oneshot_attack/position = Vector2(864, 80)
 nodes/attack/node = SubResource("AnimationNodeBlendSpace2D_bs657")
-nodes/attack/position = Vector2(560, 304)
+nodes/attack/position = Vector2(544, 304)
 node_connections = [&"output", 0, &"oneshot_attack", &"oneshot_attack", 0, &"walk", &"oneshot_attack", 1, &"attack"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j8iw7"]
@@ -798,6 +798,7 @@ SPEED = 3.0
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1171916046]
 transform = Transform3D(3.945, 0, 0, 0, 3.8105772, 1.0210412, 0, -1.0210412, 3.8105772, 0, 0, 0)
+billboard = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_uj04i")
 animation = &"new_animation"
@@ -819,7 +820,7 @@ tree_root = SubResource("AnimationNodeStateMachine_j8iw7")
 libraries/ = SubResource("AnimationLibrary_or781")
 
 [node name="RotationPoint" type="Node3D" parent="." unique_id=849246549]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 2, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="RotationPoint" unique_id=403488363]
 spring_length = 4.03
