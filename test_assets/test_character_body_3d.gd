@@ -32,6 +32,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	movement_tree["parameters/walk/blend_position"] = anim_dir
- 
-
+	
+	if Input.is_action_just_pressed("attack") :
+		movement_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	move_and_slide()

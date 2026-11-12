@@ -311,7 +311,30 @@ animations = [{
 }]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x8nt6"]
-animation = &"attack_forward"
+animation = &"walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bs657"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o1qfp"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m4kpu"]
+animation = &"walk_backward"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bs657"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_x8nt6")
+blend_point_0/pos = Vector2(0, 0.1)
+blend_point_0/name = &"walk_forward"
+blend_point_1/node = SubResource("AnimationNodeAnimation_bs657")
+blend_point_1/pos = Vector2(-0.1, 0)
+blend_point_1/name = &"walk_left"
+blend_point_2/node = SubResource("AnimationNodeAnimation_o1qfp")
+blend_point_2/pos = Vector2(0.1, 0)
+blend_point_2/name = &"walk_right"
+blend_point_3/node = SubResource("AnimationNodeAnimation_m4kpu")
+blend_point_3/pos = Vector2(0, -0.1)
+blend_point_3/name = &"walk_backward"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bs657"]
 
@@ -348,15 +371,17 @@ blend_point_4/pos = Vector2(0, 0.2)
 blend_point_4/name = &"walk_forward"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3388h"]
-graph_offset = Vector2(-23.577198, -39.058666)
+graph_offset = Vector2(-92.796585, 20.998585)
 nodes/output/position = Vector2(1120, 100)
 nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_dahie")
-nodes/walk/position = Vector2(608, 96)
-nodes/attack/node = SubResource("AnimationNodeOneShot_bs657")
-nodes/attack/position = Vector2(944, 64)
-"nodes/attack 2/node" = SubResource("AnimationNodeAnimation_x8nt6")
-"nodes/attack 2/position" = Vector2(608, 336)
-node_connections = [&"output", 0, &"attack", &"attack", 0, &"walk", &"attack", 1, &"attack 2"]
+nodes/walk/position = Vector2(528, 80)
+nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_bs657")
+nodes/oneshot_attack/position = Vector2(864, 80)
+nodes/dir/node = SubResource("AnimationNodeBlendSpace2D_bs657")
+nodes/dir/position = Vector2(528, 336)
+node_connections = [&"output", 0, &"oneshot_attack", &"oneshot_attack", 0, &"walk"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j8iw7"]
 
 [sub_resource type="Animation" id="Animation_l0q54"]
 length = 0.001
@@ -699,9 +724,13 @@ active = false
 tree_root = SubResource("AnimationNodeBlendTree_3388h")
 anim_player = NodePath("../AnimationPlayer")
 parameters/walk/blend_position = Vector2(0, 0)
-parameters/attack/active = false
-parameters/attack/internal_active = false
-parameters/attack/request = 0
+parameters/oneshot_attack/active = false
+parameters/oneshot_attack/internal_active = false
+parameters/oneshot_attack/request = 1
+parameters/dir/blend_position = Vector2(0, 0)
+
+[node name="AttackTree" type="AnimationTree" parent="." unique_id=1587881465]
+tree_root = SubResource("AnimationNodeStateMachine_j8iw7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=483325376]
 libraries/ = SubResource("AnimationLibrary_or781")
