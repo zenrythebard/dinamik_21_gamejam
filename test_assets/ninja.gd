@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 			var next_path_pos : Vector3 = nav_agent.get_next_path_position()
 			var direction : Vector3 = global_position.direction_to(next_path_pos)
 			velocity = direction * SPEED
-			print(next_path_pos)
 	
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
