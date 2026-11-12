@@ -38,19 +38,19 @@ region = Rect2(0, 150, 37, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8lx0"]
 atlas = ExtResource("2_bs657")
-region = Rect2(37, 250, 37, 50)
+region = Rect2(0, 250, 112, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5j12w"]
 atlas = ExtResource("2_bs657")
-region = Rect2(37, 300, 37, 50)
+region = Rect2(0, 300, 112, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1p7mg"]
 atlas = ExtResource("2_bs657")
-region = Rect2(37, 350, 37, 50)
+region = Rect2(0, 350, 112, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j8j3y"]
 atlas = ExtResource("2_bs657")
-region = Rect2(37, 400, 37, 50)
+region = Rect2(0, 400, 112, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0q54"]
 atlas = ExtResource("3_o1qfp")
@@ -311,30 +311,36 @@ animations = [{
 }]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x8nt6"]
-animation = &"walk_forward"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bs657"]
-animation = &"walk_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o1qfp"]
-animation = &"walk_right"
+animation = &"attack_forward"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m4kpu"]
-animation = &"walk_backward"
+animation = &"attack_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bs657"]
+animation = &"attack_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o1qfp"]
+animation = &"attack_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a8lx0"]
+animation = &"attack_forward"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bs657"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_x8nt6")
 blend_point_0/pos = Vector2(0, 0.1)
-blend_point_0/name = &"walk_forward"
-blend_point_1/node = SubResource("AnimationNodeAnimation_bs657")
-blend_point_1/pos = Vector2(-0.1, 0)
-blend_point_1/name = &"walk_left"
-blend_point_2/node = SubResource("AnimationNodeAnimation_o1qfp")
-blend_point_2/pos = Vector2(0.1, 0)
-blend_point_2/name = &"walk_right"
-blend_point_3/node = SubResource("AnimationNodeAnimation_m4kpu")
-blend_point_3/pos = Vector2(0, -0.1)
-blend_point_3/name = &"walk_backward"
+blend_point_0/name = &"attack_forward"
+blend_point_1/node = SubResource("AnimationNodeAnimation_m4kpu")
+blend_point_1/pos = Vector2(0, -0.1)
+blend_point_1/name = &"attack_backward"
+blend_point_2/node = SubResource("AnimationNodeAnimation_bs657")
+blend_point_2/pos = Vector2(-0.1, 0)
+blend_point_2/name = &"attack_left"
+blend_point_3/node = SubResource("AnimationNodeAnimation_o1qfp")
+blend_point_3/pos = Vector2(0.1, 0)
+blend_point_3/name = &"attack_right"
+blend_point_4/node = SubResource("AnimationNodeAnimation_a8lx0")
+blend_point_4/pos = Vector2(0, 0)
+blend_point_4/name = &"attack_forward 2"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bs657"]
 
@@ -371,15 +377,15 @@ blend_point_4/pos = Vector2(0, 0.2)
 blend_point_4/name = &"walk_forward"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3388h"]
-graph_offset = Vector2(-92.796585, 20.998585)
-nodes/output/position = Vector2(1120, 100)
+graph_offset = Vector2(-17.713135, 109.98153)
+nodes/output/position = Vector2(1104, 96)
 nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_dahie")
 nodes/walk/position = Vector2(528, 80)
 nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_bs657")
 nodes/oneshot_attack/position = Vector2(864, 80)
-nodes/dir/node = SubResource("AnimationNodeBlendSpace2D_bs657")
-nodes/dir/position = Vector2(528, 336)
-node_connections = [&"output", 0, &"oneshot_attack", &"oneshot_attack", 0, &"walk"]
+nodes/attack/node = SubResource("AnimationNodeBlendSpace2D_bs657")
+nodes/attack/position = Vector2(560, 304)
+node_connections = [&"output", 0, &"oneshot_attack", &"oneshot_attack", 0, &"walk", &"oneshot_attack", 1, &"attack"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j8iw7"]
 
@@ -449,6 +455,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0, 3]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_3388h"]
 resource_name = "attack_forward"
@@ -477,6 +495,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0, 3]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_bs657"]
 resource_name = "attack_side"
@@ -504,6 +534,58 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_o1qfp"]
+resource_name = "attack_right"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"attack_side"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_or781"]
@@ -699,7 +781,8 @@ _data = {
 &"RESET": SubResource("Animation_l0q54"),
 &"attack_backward": SubResource("Animation_x8nt6"),
 &"attack_forward": SubResource("Animation_3388h"),
-&"attack_side": SubResource("Animation_bs657"),
+&"attack_left": SubResource("Animation_bs657"),
+&"attack_right": SubResource("Animation_o1qfp"),
 &"idle": SubResource("Animation_or781"),
 &"walk_backward": SubResource("Animation_cqqki"),
 &"walk_forward": SubResource("Animation_1icll"),
@@ -727,7 +810,7 @@ parameters/walk/blend_position = Vector2(0, 0)
 parameters/oneshot_attack/active = false
 parameters/oneshot_attack/internal_active = false
 parameters/oneshot_attack/request = 1
-parameters/dir/blend_position = Vector2(0, 0)
+parameters/attack/blend_position = Vector2(0, 0)
 
 [node name="AttackTree" type="AnimationTree" parent="." unique_id=1587881465]
 tree_root = SubResource("AnimationNodeStateMachine_j8iw7")
