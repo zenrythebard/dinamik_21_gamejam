@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var movement_tree: AnimationTree = $MovementTree
 @export var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+@onready var camera_3d: Camera3D = $RotationPoint/SpringArm3D/Camera3D
 
 func _ready() -> void:
 	movement_tree.active = true

@@ -686,6 +686,7 @@ SPEED = 2.5
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Ninja" unique_id=435882025]
 transform = Transform3D(3.945, 0, 0, 0, 3.8105772, 1.0210412, 0, -1.0210412, 3.8105772, 0, 0, 0)
+billboard = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_1icll")
 animation = &"walk_forward"

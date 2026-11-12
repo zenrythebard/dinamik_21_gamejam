@@ -10,7 +10,6 @@ var follow : bool = true
 const JUMP_VELOCITY = 4.5
 	
 func _physics_process(delta: float) -> void:
-	sprite.look_at(player.global_transform.origin,Vector3(0,1,0))
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -31,6 +30,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	print(follow)
+ 
 
 	move_and_slide()
