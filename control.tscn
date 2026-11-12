@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c6qndw28nx8da"]
+
+[ext_resource type="Script" uid="uid://d1u4av3gu5yvn" path="res://testui.gd" id="1_0fbet"]
+
+[node name="Control" type="Control" unique_id=1674346749]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0fbet")
+
+[node name="Button" type="Button" parent="." unique_id=1271305634]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 353.0
+offset_right = 772.0
+offset_bottom = 412.0
+text = "Start"
+
+[node name="Button2" type="Button" parent="." unique_id=6608982]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 436.0
+offset_right = 772.0
+offset_bottom = 495.0
+text = "Credits"
+
+[node name="Button3" type="Button" parent="." unique_id=630897718]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 519.0
+offset_right = 772.0
+offset_bottom = 578.0
+text = "Quit"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
