@@ -1,13 +1,8 @@
 [gd_scene format=3 uid="uid://y6lafhs0ql4p"]
 
+[ext_resource type="Script" uid="uid://38vw2n2nnkc6" path="res://test_assets/debug_hud.gd" id="1_l0q54"]
 [ext_resource type="Script" uid="uid://bgt0x8vnrh1yu" path="res://test_assets/test_character_body_3d.gd" id="1_rhy7j"]
 [ext_resource type="Texture2D" uid="uid://d4nvh577j784e" path="res://test_assets/guard sprite (1).png" id="2_e4pr7"]
-[ext_resource type="Texture2D" uid="uid://ctatyknmjjac3" path="res://icon.svg" id="3_e4pr7"]
-[ext_resource type="Script" uid="uid://bmvhj0o113y5l" path="res://test_assets/player_camera.gd" id="3_l0q54"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uj04i"]
-radius = 0.09277344
-height = 0.4432373
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0q54"]
 atlas = ExtResource("2_e4pr7")
@@ -81,6 +76,42 @@ region = Rect2(0, 350, 37, 50)
 atlas = ExtResource("2_e4pr7")
 region = Rect2(0, 400, 37, 50)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4pr7"]
+atlas = ExtResource("2_e4pr7")
+region = Rect2(37, 0, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe3hl"]
+atlas = ExtResource("2_e4pr7")
+region = Rect2(37, 50, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gi5y"]
+atlas = ExtResource("2_e4pr7")
+region = Rect2(37, 100, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6guy"]
+atlas = ExtResource("2_e4pr7")
+region = Rect2(37, 150, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljeef"]
+atlas = ExtResource("2_e4pr7")
+region = Rect2(37, 200, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7rc7"]
+atlas = ExtResource("2_e4pr7")
+region = Rect2(37, 250, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6iba"]
+atlas = ExtResource("2_e4pr7")
+region = Rect2(37, 300, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ratl"]
+atlas = ExtResource("2_e4pr7")
+region = Rect2(37, 350, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8jnt"]
+atlas = ExtResource("2_e4pr7")
+region = Rect2(37, 400, 37, 50)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_uj04i"]
 animations = [{
 "frames": [{
@@ -146,7 +177,78 @@ animations = [{
 "loop": 1,
 "name": &"walk_forward",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4pr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fe3hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gi5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6guy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljeef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7rc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6iba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ratl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8jnt")
+}],
+"loop": 1,
+"name": &"walk_side",
+"speed": 5.0
 }]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e4pr7"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l0q54"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1icll"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cqqki"]
+animation = &"walk_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_or781"]
+animation = &"walk_forward"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_dahie"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_e4pr7")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_0/name = &"idle"
+blend_point_1/node = SubResource("AnimationNodeAnimation_l0q54")
+blend_point_1/pos = Vector2(-0.1, 0)
+blend_point_1/name = &"walk_left"
+blend_point_2/node = SubResource("AnimationNodeAnimation_1icll")
+blend_point_2/pos = Vector2(0.1, 0)
+blend_point_2/name = &"walk_right"
+blend_point_3/node = SubResource("AnimationNodeAnimation_cqqki")
+blend_point_3/pos = Vector2(0, -0.2)
+blend_point_3/name = &"walk_backward"
+blend_point_4/node = SubResource("AnimationNodeAnimation_or781")
+blend_point_4/pos = Vector2(0, 0.2)
+blend_point_4/name = &"walk_forward"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3388h"]
+graph_offset = Vector2(-89.62833, 15.783768)
+nodes/output/position = Vector2(1120, 100)
+nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_dahie")
+nodes/walk/position = Vector2(600, 120)
+node_connections = [&"output", 0, &"walk"]
 
 [sub_resource type="Animation" id="Animation_l0q54"]
 length = 0.001
@@ -169,10 +271,22 @@ tracks/1/path = NodePath("AnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.033333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_or781"]
@@ -230,6 +344,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [1, 8]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_1icll"]
 resource_name = "walk_forward"
@@ -258,6 +384,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [1, 8]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.03333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_dahie"]
 resource_name = "walk_forward"
@@ -272,7 +410,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.033333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"walk_forward"]
+"values": [&"walk_side"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -285,6 +423,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1, 8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.03333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_t5mk5"]
@@ -300,7 +450,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.033333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"walk_forward"]
+"values": [&"walk_side"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -314,6 +464,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [1, 8]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_or781"]
 _data = {
@@ -325,43 +487,100 @@ _data = {
 &"walk_right": SubResource("Animation_t5mk5")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uj04i"]
-size = Vector3(3.6496582, 0.08985547, 3.8082275)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p5viw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p5viw"]
+size = Vector3(5.655, 12.41, 5.92)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_l0q54"]
+data = PackedVector3Array(-2.8274999, 6.205, 2.96, 2.8274999, 6.205, 2.96, -2.8274999, -6.205, 2.96, 2.8274999, 6.205, 2.96, 2.8274999, -6.205, 2.96, -2.8274999, -6.205, 2.96, 2.8274999, 6.205, -2.96, -2.8274999, 6.205, -2.96, 2.8274999, -6.205, -2.96, -2.8274999, 6.205, -2.96, -2.8274999, -6.205, -2.96, 2.8274999, -6.205, -2.96, 2.8274999, 6.205, 2.96, 2.8274999, 6.205, -2.96, 2.8274999, -6.205, 2.96, 2.8274999, 6.205, -2.96, 2.8274999, -6.205, -2.96, 2.8274999, -6.205, 2.96, -2.8274999, 6.205, -2.96, -2.8274999, 6.205, 2.96, -2.8274999, -6.205, -2.96, -2.8274999, 6.205, 2.96, -2.8274999, -6.205, 2.96, -2.8274999, -6.205, -2.96, 2.8274999, 6.205, 2.96, -2.8274999, 6.205, 2.96, 2.8274999, 6.205, -2.96, -2.8274999, 6.205, 2.96, -2.8274999, 6.205, -2.96, 2.8274999, 6.205, -2.96, -2.8274999, -6.205, 2.96, 2.8274999, -6.205, 2.96, -2.8274999, -6.205, -2.96, 2.8274999, -6.205, 2.96, 2.8274999, -6.205, -2.96, -2.8274999, -6.205, -2.96)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uj04i"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_e4pr7"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [node name="Node3D" type="Node3D" unique_id=763767127]
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1628354097 node_paths=PackedStringArray("anim_player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59350646, 0)
-script = ExtResource("1_rhy7j")
-anim_player = NodePath("AnimationPlayer")
-SPEED = 1.5
+[node name="DebugHud" type="Control" parent="." unique_id=586792392]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_l0q54")
+fps_bool = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=168718984]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.063207984, 0)
-shape = SubResource("CapsuleShape3D_uj04i")
+[node name="DebugText" type="TextEdit" parent="DebugHud" unique_id=2125451446]
+layout_mode = 0
+offset_right = 119.0
+offset_bottom = 56.0
+text = "test"
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1628354097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9346148, 0)
+script = ExtResource("1_rhy7j")
+SPEED = 3.0
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Player" unique_id=1486701933]
-transform = Transform3D(1, 0, 0, 0, 0.7992685, -0.6009742, 0, 0.6009742, 0.7992685, 0, 0, 0)
+transform = Transform3D(3.945, 0, 0, 0, 3.8105772, 1.0210412, 0, -1.0210412, 3.8105772, 0, 0, 0)
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_uj04i")
 animation = &"new_animation"
 
+[node name="MovementTree" type="AnimationTree" parent="Player" unique_id=1813816033]
+tree_root = SubResource("AnimationNodeBlendTree_3388h")
+anim_player = NodePath("../AnimationPlayer")
+parameters/walk/blend_position = Vector2(0, 0)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=352116545]
 libraries/ = SubResource("AnimationLibrary_or781")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=870061433 node_paths=PackedStringArray("follow_object")]
-transform = Transform3D(-0.9999327, 0.008520046, -0.007880568, -0.003434684, 0.43135828, 0.90217423, 0.011085914, 0.9021405, -0.43129998, 0, 1.678203, -0.23496386)
-script = ExtResource("3_l0q54")
-follow_object = NodePath("../Player")
-follow_speed = 4.0
-behind_character_offset = 0.355
+[node name="RotationPoint" type="Node3D" parent="Player" unique_id=1737925342]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, 0)
 
-[node name="RigidBody3D" type="StaticBody3D" parent="." unique_id=286595320]
+[node name="SpringArm3D" type="SpringArm3D" parent="Player/RotationPoint" unique_id=1037341864]
+spring_length = 4.03
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=261039021]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07434082, 0.13884033, 0.39923096)
-shape = SubResource("BoxShape3D_uj04i")
+[node name="Camera3D" type="Camera3D" parent="Player/RotationPoint/SpringArm3D" unique_id=1359108336]
 
-[node name="Sprite3D" type="Sprite3D" parent="RigidBody3D" unique_id=1094039762]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-texture = ExtResource("3_e4pr7")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1886905176]
+shape = SubResource("CapsuleShape3D_p5viw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1665702939]
+light_indirect_energy = 5.132
+light_volumetric_fog_energy = 1.2
+light_angular_distance = 45.89
+light_specular = 7.04
+light_bake_mode = 1
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=885575669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3129764, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1068879552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5891323, 3.7832549, -1.157473)
+mesh = SubResource("BoxMesh_p5viw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1455144850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5891323, 3.7832549, -1.157473)
+shape = SubResource("ConcavePolygonShape3D_l0q54")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1259349754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.802898, 2.3129764, -5.354058)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=657621066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5891323, 3.7832549, -1.157473)
+mesh = SubResource("BoxMesh_p5viw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1053620669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5891323, 3.7832549, -1.157473)
+shape = SubResource("ConcavePolygonShape3D_l0q54")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=183144430]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3" unique_id=1137061260]
+transform = Transform3D(130.06161, 0, 0, 0, 1, 0, 0, 0, 84.36816, 0, 0, 0)
+mesh = SubResource("PlaneMesh_uj04i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=904322233]
+transform = Transform3D(130.06161, 0, 0, 0, 1, 0, 0, 0, 84.36816, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_e4pr7")

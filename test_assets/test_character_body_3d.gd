@@ -1,12 +1,8 @@
 extends CharacterBody3D
 
-@export var anim_player : AnimationPlayer
-
+@onready var movement_tree: AnimationTree = $MovementTree
 @export var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
-func _ready() -> void:
-	anim_player.play("idle")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -20,7 +16,10 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var anim_dir : Vector2
+	anim_dir.x = direction.x
+	anim_dir.y = -direction.z
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -28,12 +27,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-		
-	if velocity.z == 0:
-			anim_player.play("idle")
-	elif velocity.z > 0:
-			anim_player.play("walk_forward")
-	elif velocity.z < 0:
-			anim_player.play("walk_backward")
+	
+	movement_tree["parameters/walk/blend_position"] = anim_dir
+ 
 
 	move_and_slide()
