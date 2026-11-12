@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://0v3d0xdojfyd"]
+
+[ext_resource type="Texture2D" uid="uid://cwvj2a33ebq1e" path="res://UI SKETCH.png" id="1_37p78"]
+
+[node name="Hud" type="Control" unique_id=1045852115]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UiSketch" type="Sprite2D" parent="." unique_id=1758667768]
+position = Vector2(348.00003, 944.75)
+scale = Vector2(0.588172, 0.588172)
+texture = ExtResource("1_37p78")
+region_enabled = true
+region_rect = Rect2(133.64172, 912.8346, 1161.6189, 465.6239)
+
+[node name="UiSketch2" type="Sprite2D" parent="." unique_id=1787596248]
+position = Vector2(496.99976, 140.99994)
+scale = Vector2(0.58183634, 0.58183634)
+texture = ExtResource("1_37p78")
+region_enabled = true
+region_rect = Rect2(1732.5096, 1182.6929, 1726.3907, 501.44128)
