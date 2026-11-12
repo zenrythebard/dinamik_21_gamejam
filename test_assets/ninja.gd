@@ -1,28 +1,36 @@
 extends CharacterBody3D
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@export var target : CharacterBody3D
+@onready var player : CharacterBody3D = %Player
+var target_pos : Vector3
+var follow : bool = true
+@onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
-
-const SPEED = 5.0
+@export var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
-
+	
 func _physics_process(delta: float) -> void:
+	sprite.look_at(player.global_transform.origin,Vector3(0,1,0))
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	
+	if target:
+		if follow:
+			target_pos = target.position
+			nav_agent.target_position = target_pos
+			var next_path_pos : Vector3 = nav_agent.get_next_path_position()
+			var direction : Vector3 = global_position.direction_to(next_path_pos)
+			velocity = direction * SPEED
+			print(next_path_pos)
+	
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	print(follow)
 
 	move_and_slide()
