@@ -4,6 +4,9 @@ extends CharacterBody3D
 @export var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+func _ready() -> void:
+	movement_tree.active = true
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
