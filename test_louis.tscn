@@ -17,7 +17,6 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [node name="Player" parent="." unique_id=467720308 instance=ExtResource("1_8xeyj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1796747, 0)
-SPEED = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1932295934]
 light_indirect_energy = 5.132
