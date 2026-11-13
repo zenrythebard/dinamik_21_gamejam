@@ -802,7 +802,7 @@ texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_uj04i")
 animation = &"walk_forward"
 
-[node name="MovementTree" type="AnimationTree" parent="." unique_id=1217875405]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1217875405]
 active = false
 tree_root = SubResource("AnimationNodeBlendTree_3388h")
 anim_player = NodePath("../AnimationPlayer")
