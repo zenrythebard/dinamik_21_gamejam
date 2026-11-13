@@ -1,4 +1,6 @@
+class_name Ninja
 extends CharacterBody3D
+
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var target : CharacterBody3D
 @onready var player : CharacterBody3D = %Player
