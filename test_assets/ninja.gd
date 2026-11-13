@@ -8,6 +8,7 @@ var target_pos : Vector3
 var follow_player : bool = true
 var player_in_range : bool = false
 var first_strike : bool = true
+var player_facing : int = 1
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
