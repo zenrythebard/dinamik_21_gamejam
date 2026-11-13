@@ -789,6 +789,9 @@ _data = {
 &"walk_right": SubResource("Animation_t5mk5")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_uj04i"]
+size = Vector3(52.68631, 1, 85.19537)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p5viw"]
 
 [node name="Player" type="CharacterBody3D" unique_id=467720308]
@@ -821,26 +824,27 @@ libraries/ = SubResource("AnimationLibrary_or781")
 [node name="RotationPoint" type="Node3D" parent="." unique_id=849246549]
 transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 2, 0)
 
+[node name="Front" type="Area3D" parent="RotationPoint" unique_id=1492993854]
+transform = Transform3D(1, 0, 0, 0, 0.9659261, -0.2588191, 0, 0.2588191, 0.9659261, 0, -1.7457042, -1.2123523)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Front" unique_id=739419436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, -42.097687)
+shape = SubResource("BoxShape3D_uj04i")
+
+[node name="Back" type="Area3D" parent="RotationPoint" unique_id=1348420502]
+transform = Transform3D(-1, 2.2626683e-08, -8.4443926e-08, 1.7763568e-15, 0.965926, 0.25881907, 8.7422784e-08, 0.25881907, -0.965926, 0, -2.0942528, 0.08844936)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Back" unique_id=358664693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, -42.097687)
+shape = SubResource("BoxShape3D_uj04i")
+
 [node name="SpringArm3D" type="SpringArm3D" parent="RotationPoint" unique_id=403488363]
 spring_length = 4.03
 
 [node name="Camera3D" type="Camera3D" parent="RotationPoint/SpringArm3D" unique_id=934735924]
 
-[node name="FrontRay" type="RayCast3D" parent="RotationPoint" unique_id=1995768341]
-transform = Transform3D(-1, -8.403617e-08, -2.4096984e-08, 0, -0.27563736, 0.9612617, -8.742278e-08, 0.9612617, 0.27563736, 0, -1.9795815, -0.5304272)
-target_position = Vector3(0, -50, 0)
-
-[node name="BackRay" type="RayCast3D" parent="RotationPoint" unique_id=1423825023]
-transform = Transform3D(-1, -8.403617e-08, -2.4096984e-08, 0, -0.27563736, 0.9612617, -8.742278e-08, 0.9612617, 0.27563736, 0, -1.9795815, -0.5304272)
-target_position = Vector3(0, 50, 0)
-
-[node name="LeftRay" type="RayCast3D" parent="RotationPoint" unique_id=1883215286]
-transform = Transform3D(-1, -8.403617e-08, -2.4096984e-08, 0, -0.27563736, 0.9612617, -8.742278e-08, 0.9612617, 0.27563736, 0, -1.9795815, -0.5304272)
-target_position = Vector3(50, 0, 0)
-
-[node name="RightRay" type="RayCast3D" parent="RotationPoint" unique_id=825624996]
-transform = Transform3D(-1, -8.403617e-08, -2.4096984e-08, 0, -0.27563736, 0.9612617, -8.742278e-08, 0.9612617, 0.27563736, 0, -1.9795815, -0.5304272)
-target_position = Vector3(-50, 0, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=344078812]
 shape = SubResource("CapsuleShape3D_p5viw")
+
+[connection signal="body_entered" from="RotationPoint/Front" to="." method="_on_front_body_entered"]
+[connection signal="body_exited" from="RotationPoint/Front" to="." method="_on_front_body_exited"]

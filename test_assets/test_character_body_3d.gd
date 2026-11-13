@@ -58,3 +58,12 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta = event.relative
 		rotation_point.rotation_degrees.y += (-mouse_delta.x * 0.2)
+
+
+func _on_front_body_entered(body: Ninja) -> void:
+	body.player_facing = 1
+	print(body.player_facing)
+
+func _on_front_body_exited(body: Ninja) -> void:
+	body.player_facing = 2
+	print(body.player_facing)
