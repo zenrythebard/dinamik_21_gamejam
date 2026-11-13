@@ -26,8 +26,8 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("walk_left", "walk_right", "walk_forward", "walk_backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).rotated(Vector3.UP, rotation_point.rotation.y).normalized()
 	var anim_dir : Vector2
-	anim_dir.x = direction.x
-	anim_dir.y = -direction.z
+	anim_dir.x = input_dir.x
+	anim_dir.y = -input_dir.y
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
