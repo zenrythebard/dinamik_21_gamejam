@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var target : CharacterBody3D
 @onready var player : CharacterBody3D = %Player
 var target_pos : Vector3
-var follow : bool = true
+var follow_player : bool = true
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
 @export var SPEED = 5.0
@@ -19,12 +19,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 	
 	if target:
-		if follow:
-			target_pos = target.position
-			nav_agent.target_position = target_pos
-			var next_path_pos : Vector3 = nav_agent.get_next_path_position()
-			var direction : Vector3 = global_position.direction_to(next_path_pos)
-			velocity = direction * SPEED
+		if follow_player:
+			run_to_player()
 	
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -32,3 +28,10 @@ func _physics_process(delta: float) -> void:
  
 
 	move_and_slide()
+
+func run_to_player():
+	target_pos = target.position
+	nav_agent.target_position = target_pos
+	var next_path_pos : Vector3 = nav_agent.get_next_path_position()
+	var direction : Vector3 = global_position.direction_to(next_path_pos)
+	velocity = direction * SPEED

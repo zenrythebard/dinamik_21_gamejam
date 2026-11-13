@@ -410,7 +410,7 @@ tracks/1/path = NodePath("AnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(-0.033333335),
+"times": PackedFloat32Array(0.033333335),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0]
@@ -422,10 +422,10 @@ tracks/2/path = NodePath("AnimatedSprite3D:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.033333335),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [&"new_animation"]
+"values": [&"walk_forward"]
 }
 
 [sub_resource type="Animation" id="Animation_x8nt6"]
@@ -801,7 +801,7 @@ transform = Transform3D(3.945, 0, 0, 0, 3.8105772, 1.0210412, 0, -1.0210412, 3.8
 billboard = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_uj04i")
-animation = &"new_animation"
+animation = &"walk_forward"
 
 [node name="MovementTree" type="AnimationTree" parent="." unique_id=1217875405]
 active = false
