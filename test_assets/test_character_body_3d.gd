@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @onready var movement_tree: AnimationTree = $MovementTree
 @export var SPEED = 5.0
@@ -19,7 +20,14 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	
+	if Input.is_action_just_pressed("esc") :
+		if Input.mouse_mode == 2 :
+			Input.mouse_mode = 0
+			
+		else :
+			Input.mouse_mode = 2
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 
