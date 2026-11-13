@@ -1,5 +1,5 @@
-extends CharacterBody3D
 class_name Player
+extends CharacterBody3D
 
 @onready var movement_tree: AnimationTree = $MovementTree
 @export var SPEED = 5.0
@@ -45,7 +45,6 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	move_and_slide()
-	print (direction)
 	
 	movement_tree["parameters/walk/blend_position"] = anim_dir
 	
