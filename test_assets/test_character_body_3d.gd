@@ -1,14 +1,14 @@
 extends CharacterBody3D
 class_name Player
 
-@onready var movement_tree: AnimationTree = $MovementTree
+@onready var animation_tree: AnimationTree = $AnimationTree
 @export var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @onready var rotation_point: Node3D = $RotationPoint
 var mouse_delta : Vector2  
 
 func _ready() -> void:
-	movement_tree.active = true
+	animation_tree.active = true
 	Input.mouse_mode = 2
 
 func _physics_process(delta: float) -> void:
@@ -47,12 +47,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	print (direction)
 	
-	movement_tree["parameters/walk/blend_position"] = anim_dir
+	animation_tree["parameters/walk/blend_position"] = anim_dir
 	
 	if Input.is_action_just_pressed("attack") :
-		movement_tree["parameters/attack/blend_position"] = anim_dir
-		movement_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-	
+		if not animation_tree.get("parameters/oneshot_attack/active") :
+			animation_tree["parameters/attack/blend_position"] = anim_dir
+			animation_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+			
+				
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta = event.relative

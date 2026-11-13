@@ -377,7 +377,7 @@ blend_point_4/pos = Vector2(0, 0.2)
 blend_point_4/name = &"walk_forward"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3388h"]
-graph_offset = Vector2(90.286865, 75.58153)
+graph_offset = Vector2(-124.642136, 92.2135)
 nodes/output/position = Vector2(1104, 96)
 nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_dahie")
 nodes/walk/position = Vector2(528, 80)
@@ -386,8 +386,6 @@ nodes/oneshot_attack/position = Vector2(864, 80)
 nodes/attack/node = SubResource("AnimationNodeBlendSpace2D_bs657")
 nodes/attack/position = Vector2(544, 304)
 node_connections = [&"output", 0, &"oneshot_attack", &"oneshot_attack", 0, &"walk", &"oneshot_attack", 1, &"attack"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j8iw7"]
 
 [sub_resource type="Animation" id="Animation_l0q54"]
 length = 0.001
@@ -430,7 +428,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_x8nt6"]
 resource_name = "attack_backward"
-length = 0.05
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -450,7 +448,7 @@ tracks/1/path = NodePath("AnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -470,7 +468,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_3388h"]
 resource_name = "attack_forward"
-length = 0.05
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -490,7 +488,7 @@ tracks/1/path = NodePath("AnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.03333333),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -510,7 +508,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_bs657"]
 resource_name = "attack_side"
-length = 0.05
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -530,7 +528,7 @@ tracks/1/path = NodePath("AnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335),
+"times": PackedFloat32Array(0, 0.16666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -550,7 +548,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_o1qfp"]
 resource_name = "attack_right"
-length = 0.05
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -570,7 +568,7 @@ tracks/1/path = NodePath("AnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335),
+"times": PackedFloat32Array(0, 0.16666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -803,7 +801,7 @@ texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_uj04i")
 animation = &"walk_forward"
 
-[node name="MovementTree" type="AnimationTree" parent="." unique_id=1217875405]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1217875405]
 active = false
 tree_root = SubResource("AnimationNodeBlendTree_3388h")
 anim_player = NodePath("../AnimationPlayer")
@@ -812,9 +810,6 @@ parameters/oneshot_attack/active = false
 parameters/oneshot_attack/internal_active = false
 parameters/oneshot_attack/request = 1
 parameters/attack/blend_position = Vector2(0, 0)
-
-[node name="AttackTree" type="AnimationTree" parent="." unique_id=1587881465]
-tree_root = SubResource("AnimationNodeStateMachine_j8iw7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=483325376]
 libraries/ = SubResource("AnimationLibrary_or781")
