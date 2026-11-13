@@ -71,7 +71,7 @@ blend_point_4/pos = Vector2(0, 0)
 blend_point_4/name = &"idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_75ktg"]
-graph_offset = Vector2(-33.999256, 78.86031)
+graph_offset = Vector2(-40.399254, 134.86032)
 nodes/output/position = Vector2(1104, 96)
 nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_dahie")
 nodes/walk/position = Vector2(528, 80)
@@ -482,6 +482,22 @@ _data = {
 &"walk_right": SubResource("Animation_t5mk5")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_071xj"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(74, 0, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wurd0"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(74, 50, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t13w"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(74, 100, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq7cc"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(74, 150, 37, 50)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ih21j"]
 atlas = ExtResource("2_wurd0")
 region = Rect2(0, 0, 37, 50)
@@ -608,6 +624,23 @@ region = Rect2(37, 400, 37, 50)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1icll"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_071xj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wurd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4t13w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq7cc")
+}],
+"loop": 1,
+"name": &"attack_backward",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ih21j")
