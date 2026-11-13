@@ -8,7 +8,7 @@ var mouse_delta : Vector2
 
 func _ready() -> void:
 	movement_tree.active = true
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = 2
 
 func _physics_process(delta: float) -> void:
 	
