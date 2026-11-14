@@ -8,13 +8,16 @@ var target_pos : Vector3
 var follow_player : bool = true
 var player_in_range : bool = false
 var first_strike : bool = true
-var player_facing : int = 1
-@onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
-@onready var animation_tree: AnimationTree = $AnimationTree
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+var player_facing : Vector2 
+@export var sprite: AnimatedSprite3D 
+@export var animation_tree: AnimationTree 
+@export var animation_player: AnimationPlayer  
 
 @export var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+	
+func _ready() -> void:
+	animation_tree.active = true
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -49,10 +52,8 @@ func run_to_player():
 	var next_path_pos : Vector3 = nav_agent.get_next_path_position()
 	var direction : Vector3 = global_position.direction_to(next_path_pos)
 	velocity = direction * SPEED
-	if player_facing == 1:
-		animation_player.play("walk_backward")
-	elif player_facing == 2:
-		animation_player.play("walk_forward")
+	animation_tree["parameters/walk/blend_position"] = player_facing
+	print(animation_tree["parameters/walk/blend_position"])
 	
 func delta_distance_to_player_calc() -> bool:
 	var prev_dis : float

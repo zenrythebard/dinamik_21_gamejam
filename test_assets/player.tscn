@@ -377,6 +377,7 @@ blend_point_4/pos = Vector2(0, 0)
 blend_point_4/name = &"idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3388h"]
+graph_offset = Vector2(12.80365, 121.63728)
 nodes/output/position = Vector2(1104, 96)
 nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_dahie")
 nodes/walk/position = Vector2(528, 80)
@@ -385,8 +386,6 @@ nodes/oneshot_attack/position = Vector2(864, 80)
 nodes/attack/node = SubResource("AnimationNodeBlendSpace2D_bs657")
 nodes/attack/position = Vector2(544, 304)
 node_connections = [&"output", 0, &"oneshot_attack", &"oneshot_attack", 0, &"walk", &"oneshot_attack", 1, &"attack"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j8iw7"]
 
 [sub_resource type="Animation" id="Animation_l0q54"]
 length = 0.001
@@ -789,8 +788,17 @@ _data = {
 &"walk_right": SubResource("Animation_t5mk5")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uj04i"]
-size = Vector3(52.68631, 1, 85.19537)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4t13w"]
+points = PackedVector3Array(0, 0, 0, -40, 0, -10, -40, 0, -100, 40, 0, -100, 40, 0, -10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bs657"]
+points = PackedVector3Array(0, 0, 0, -40, 0, 10, -40, 0, 100, 40, 0, 100, 40, 0, 10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uj04i"]
+points = PackedVector3Array(0, 0, 0, -40, 0, 10, -40, 0, -10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x8nt6"]
+points = PackedVector3Array(0, 0, 0, 40, 0, 10, 40, 0, -10)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p5viw"]
 
@@ -815,9 +823,6 @@ parameters/oneshot_attack/internal_active = false
 parameters/oneshot_attack/request = 1
 parameters/attack/blend_position = Vector2(0, 0)
 
-[node name="AttackTree" type="AnimationTree" parent="." unique_id=1587881465]
-tree_root = SubResource("AnimationNodeStateMachine_j8iw7")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=483325376]
 libraries/ = SubResource("AnimationLibrary_or781")
 
@@ -825,18 +830,34 @@ libraries/ = SubResource("AnimationLibrary_or781")
 transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 2, 0)
 
 [node name="Front" type="Area3D" parent="RotationPoint" unique_id=1492993854]
-transform = Transform3D(1, 0, 0, 0, 0.9659261, -0.2588191, 0, 0.2588191, 0.9659261, 0, -1.7457042, -1.2123523)
+transform = Transform3D(1, 0, 0, 0, 0.96592635, -0.25881916, 0, 0.25881916, 0.96592635, 0, -1.8776644, -0.71987164)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Front" unique_id=739419436]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, -42.097687)
-shape = SubResource("BoxShape3D_uj04i")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, 0.24905556)
+shape = SubResource("ConvexPolygonShape3D_4t13w")
+debug_color = Color(1, 1, 1, 0.41960785)
 
-[node name="Back" type="Area3D" parent="RotationPoint" unique_id=1348420502]
-transform = Transform3D(-1, 2.2626683e-08, -8.4443926e-08, 1.7763568e-15, 0.965926, 0.25881907, 8.7422784e-08, 0.25881907, -0.965926, 0, -2.0942528, 0.08844936)
+[node name="Back" type="Area3D" parent="RotationPoint" unique_id=1520725833]
+transform = Transform3D(1, 0, 0, 0, 0.96592635, -0.25881916, 0, 0.25881916, 0.96592635, 0, -1.8776644, -0.71987164)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Back" unique_id=358664693]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, -42.097687)
-shape = SubResource("BoxShape3D_uj04i")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Back" unique_id=690435585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, 0.24905556)
+shape = SubResource("ConvexPolygonShape3D_bs657")
+debug_color = Color(1, 1, 1, 0.41960785)
+
+[node name="Left" type="Area3D" parent="RotationPoint" unique_id=1623363201]
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, -1.9426186, -0.47745818)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Left" unique_id=1760319386]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_uj04i")
+
+[node name="Right" type="Area3D" parent="RotationPoint" unique_id=102592536]
+transform = Transform3D(1, 0, 0, 0, 0.96592605, -0.2588191, 0, 0.2588191, 0.96592605, 0, -1.9426186, -0.47745818)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Right" unique_id=62421260]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_x8nt6")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="RotationPoint" unique_id=403488363]
 spring_length = 4.03
@@ -848,3 +869,9 @@ shape = SubResource("CapsuleShape3D_p5viw")
 
 [connection signal="body_entered" from="RotationPoint/Front" to="." method="_on_front_body_entered"]
 [connection signal="body_exited" from="RotationPoint/Front" to="." method="_on_front_body_exited"]
+[connection signal="body_entered" from="RotationPoint/Back" to="." method="_on_back_body_entered"]
+[connection signal="body_exited" from="RotationPoint/Back" to="." method="_on_back_body_exited"]
+[connection signal="body_entered" from="RotationPoint/Left" to="." method="_on_left_body_entered"]
+[connection signal="body_exited" from="RotationPoint/Left" to="." method="_on_left_body_exited"]
+[connection signal="body_entered" from="RotationPoint/Right" to="." method="_on_right_body_entered"]
+[connection signal="body_exited" from="RotationPoint/Right" to="." method="_on_right_body_exited"]

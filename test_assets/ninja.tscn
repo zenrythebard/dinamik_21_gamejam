@@ -4,82 +4,48 @@
 [ext_resource type="Texture2D" uid="uid://cfyjdavolww0x" path="res://test_assets/Guard Attack.png" id="2_wurd0"]
 [ext_resource type="Texture2D" uid="uid://d4nvh577j784e" path="res://test_assets/guard sprite (1).png" id="3_4t13w"]
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_071xj"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_071xj"]
-animation = &"attack_forward"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wurd0"]
-animation = &"attack_backward"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4t13w"]
-animation = &"attack_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sq7cc"]
-animation = &"attack_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vsbne"]
-animation = &"attack_forward"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bs657"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_071xj")
-blend_point_0/pos = Vector2(0, 0.1)
-blend_point_0/name = &"attack_forward"
-blend_point_1/node = SubResource("AnimationNodeAnimation_wurd0")
-blend_point_1/pos = Vector2(0, -0.1)
-blend_point_1/name = &"attack_backward"
-blend_point_2/node = SubResource("AnimationNodeAnimation_4t13w")
-blend_point_2/pos = Vector2(-0.1, 0)
-blend_point_2/name = &"attack_left"
-blend_point_3/node = SubResource("AnimationNodeAnimation_sq7cc")
-blend_point_3/pos = Vector2(0.1, 0)
-blend_point_3/name = &"attack_right"
-blend_point_4/node = SubResource("AnimationNodeAnimation_vsbne")
-blend_point_4/pos = Vector2(0, 0)
-blend_point_4/name = &"attack_forward 2"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bs657"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_taggi"]
-animation = &"walk_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5xeig"]
-animation = &"walk_forward"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_indeb"]
-animation = &"walk_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2avmo"]
 animation = &"walk_backward"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ugkvk"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wurd0"]
+animation = &"walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4t13w"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sq7cc"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vsbne"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_dahie"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_taggi")
-blend_point_0/pos = Vector2(-0.1, 0)
-blend_point_0/name = &"walk_left"
-blend_point_1/node = SubResource("AnimationNodeAnimation_5xeig")
-blend_point_1/pos = Vector2(0, 0.2)
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ugkvk"]
+blend_mode = 1
+blend_point_0/node = SubResource("AnimationNodeAnimation_071xj")
+blend_point_0/pos = Vector2(0, 0.1)
+blend_point_0/name = &"walk_backward"
+blend_point_1/node = SubResource("AnimationNodeAnimation_wurd0")
+blend_point_1/pos = Vector2(0, -0.1)
 blend_point_1/name = &"walk_forward"
-blend_point_2/node = SubResource("AnimationNodeAnimation_indeb")
+blend_point_2/node = SubResource("AnimationNodeAnimation_4t13w")
 blend_point_2/pos = Vector2(0.1, 0)
 blend_point_2/name = &"walk_right"
-blend_point_3/node = SubResource("AnimationNodeAnimation_2avmo")
-blend_point_3/pos = Vector2(0, -0.2)
-blend_point_3/name = &"walk_backward"
-blend_point_4/node = SubResource("AnimationNodeAnimation_ugkvk")
+blend_point_3/node = SubResource("AnimationNodeAnimation_sq7cc")
+blend_point_3/pos = Vector2(-0.1, 0)
+blend_point_3/name = &"walk_left"
+blend_point_4/node = SubResource("AnimationNodeAnimation_vsbne")
 blend_point_4/pos = Vector2(0, 0)
 blend_point_4/name = &"idle"
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_75ktg"]
-graph_offset = Vector2(-40.399254, 134.86032)
-nodes/output/position = Vector2(1104, 96)
-nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_dahie")
-nodes/walk/position = Vector2(528, 80)
-nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_bs657")
-nodes/oneshot_attack/position = Vector2(864, 80)
-nodes/attack/node = SubResource("AnimationNodeBlendSpace2D_bs657")
-nodes/attack/position = Vector2(544, 304)
-node_connections = [&"output", 0, &"oneshot_attack", &"oneshot_attack", 0, &"walk", &"oneshot_attack", 1, &"attack"]
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jc63w"]
+graph_offset = Vector2(-582.7234, 60.089737)
+nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_071xj")
+nodes/oneshot_attack/position = Vector2(60, 100)
+nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_ugkvk")
+nodes/walk/position = Vector2(-180, 120)
+node_connections = [&"output", 0, &"oneshot_attack", &"oneshot_attack", 0, &"walk"]
 
 [sub_resource type="Animation" id="Animation_l0q54"]
 length = 0.001
@@ -763,19 +729,20 @@ radius = 4.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_071xj"]
 radius = 1.663
 
-[node name="Ninja" type="CharacterBody3D" unique_id=1572494235]
+[node name="Ninja" type="CharacterBody3D" unique_id=1572494235 node_paths=PackedStringArray("sprite", "animation_tree", "animation_player")]
 script = ExtResource("1_071xj")
+sprite = NodePath("AnimatedSprite3D")
+animation_tree = NodePath("AnimationTree")
+animation_player = NodePath("AnimationPlayer")
 SPEED = 2.5
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1532867030]
-active = false
-tree_root = SubResource("AnimationNodeBlendTree_75ktg")
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1326933241]
+tree_root = SubResource("AnimationNodeBlendTree_jc63w")
 anim_player = NodePath("../AnimationPlayer")
-parameters/walk/blend_position = Vector2(0, 0)
 parameters/oneshot_attack/active = false
 parameters/oneshot_attack/internal_active = false
-parameters/oneshot_attack/request = 1
-parameters/attack/blend_position = Vector2(0, 0)
+parameters/oneshot_attack/request = 0
+parameters/walk/blend_position = Vector2(0.27208483, 0.55251145)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1989594591]
 libraries/ = SubResource("AnimationLibrary_4vfer")
