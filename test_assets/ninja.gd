@@ -7,7 +7,9 @@ extends CharacterBody3D
 var target_pos : Vector3
 var follow_player : bool = true
 var player_in_range : bool = false
-var first_strike : bool = true
+var first_strike : bool = false
+var able_attack : bool = false
+var attack_in_range : bool = false
 var player_facing : Vector2 
 @export var sprite: AnimatedSprite3D 
 @export var animation_tree: AnimationTree 
@@ -29,6 +31,7 @@ func _physics_process(delta: float) -> void:
 		#velocity.y = JUMP_VELOCITY
 	ninja_behaviour()
 	move_and_slide()
+	direction_relative_to_player()
 
 func ninja_behaviour():
 	if target:
@@ -38,22 +41,57 @@ func ninja_behaviour():
 			elif first_strike == true:
 				run_to_player()
 			else:
-				velocity.x = move_toward(velocity.x, 0, SPEED)
-				velocity.z = move_toward(velocity.z, 0, SPEED)
-				animation_player.play("idle")
+				idle_behaviour()
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-		animation_player.play("idle")
+		idle_behaviour()
 
 func run_to_player():
+	await get_tree().create_timer(0.1).timeout
 	target_pos = target.position
 	nav_agent.target_position = target_pos
 	var next_path_pos : Vector3 = nav_agent.get_next_path_position()
 	var direction : Vector3 = global_position.direction_to(next_path_pos)
 	velocity = direction * SPEED
 	animation_tree["parameters/walk/blend_position"] = player_facing
-	print(animation_tree["parameters/walk/blend_position"])
+	animation_tree["parameters/blend_walk/blend_amount"] = 1
+	
+func hover_behaviour():
+	return
+	
+func idle_behaviour():
+	await get_tree().create_timer(0.1).timeout
+	velocity.x = move_toward(velocity.x, 0, SPEED)
+	velocity.z = move_toward(velocity.z, 0, SPEED)
+	animation_tree["parameters/blend_walk/blend_amount"] = 0
+	
+	
+func first_strike_behaviour():
+	if first_strike == true :
+		if attack_in_range == false :
+			run_to_player()
+		else :
+			
+			
+			return
+			
+func attack_behaviour():
+	return
+		
+
+	
+	
+var player_position_relative_x : String
+var player_position_relative_z : String
+
+func direction_relative_to_player () :
+	if player.global_position.x > global_position.x:
+		player_position_relative_x = "east"
+	if player.global_position.x < global_position.x:
+		player_position_relative_x = "west"
+	if player.global_position.z > global_position.z:
+		player_position_relative_z = "south"
+	if player.global_position.z < global_position.z:
+		player_position_relative_z = "north"
 	
 func delta_distance_to_player_calc() -> bool:
 	var prev_dis : float
@@ -77,4 +115,13 @@ func _on_zone_of_control_body_entered(body: Node3D) -> void:
 func _on_zone_of_control_body_exited(body: Node3D) -> void:
 	if body is Player:
 		player_in_range = false
+		
+func _on_zone_of_attack_body_entered(body: Node3D) -> void:
+	if body is Player:
+		attack_in_range = true
+		print ("attack_able")
+		
+func _on_zone_of_attack_body_exited(body: Node3D) -> void:
+	if body is Player:
+		attack_in_range = false
 		

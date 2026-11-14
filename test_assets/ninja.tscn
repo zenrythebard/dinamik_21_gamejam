@@ -4,7 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://cfyjdavolww0x" path="res://test_assets/Guard Attack.png" id="2_wurd0"]
 [ext_resource type="Texture2D" uid="uid://d4nvh577j784e" path="res://test_assets/guard sprite (1).png" id="3_4t13w"]
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_071xj"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_071xj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vsbne"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_wurd0"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_071xj"]
 animation = &"walk_backward"
@@ -34,12 +39,17 @@ blend_point_3/pos = Vector2(-0.1, 0)
 blend_point_3/name = &"walk_left"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jc63w"]
-graph_offset = Vector2(-582.7234, 60.089737)
-nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_071xj")
-nodes/oneshot_attack/position = Vector2(60, 100)
+graph_offset = Vector2(-488.90137, 102.10952)
+nodes/output/position = Vector2(560, 176)
+nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_wurd0")
+nodes/oneshot_attack/position = Vector2(304, 144)
 nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_ugkvk")
-nodes/walk/position = Vector2(-180, 120)
-node_connections = [&"output", 0, &"oneshot_attack", &"oneshot_attack", 0, &"walk"]
+nodes/walk/position = Vector2(-240, 288)
+nodes/ide/node = SubResource("AnimationNodeAnimation_vsbne")
+nodes/ide/position = Vector2(-256, 64)
+nodes/blend_walk/node = SubResource("AnimationNodeBlend2_071xj")
+nodes/blend_walk/position = Vector2(-16, 80)
+node_connections = [&"output", 0, &"oneshot_attack", &"oneshot_attack", 0, &"blend_walk", &"blend_walk", 0, &"ide", &"blend_walk", 1, &"walk"]
 
 [sub_resource type="Animation" id="Animation_l0q54"]
 length = 0.001
@@ -737,6 +747,7 @@ parameters/oneshot_attack/active = false
 parameters/oneshot_attack/internal_active = false
 parameters/oneshot_attack/request = 0
 parameters/walk/blend_position = Vector2(0.023608804, 0.06849313)
+parameters/blend_walk/blend_amount = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1989594591]
 libraries/ = SubResource("AnimationLibrary_4vfer")
@@ -759,10 +770,13 @@ shape = SubResource("CapsuleShape3D_fe3hl")
 shape = SubResource("CylinderShape3D_1icll")
 debug_color = Color(8.7236984e-08, 0.11272059, 0.13832667, 0.42)
 
-[node name="Area3D" type="Area3D" parent="." unique_id=428165025]
+[node name="ZoneOfAttack" type="Area3D" parent="." unique_id=428165025]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1417662229]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneOfAttack" unique_id=1417662229]
 shape = SubResource("CylinderShape3D_071xj")
 
 [connection signal="body_entered" from="ZoneOfControl" to="." method="_on_zone_of_control_body_entered"]
 [connection signal="body_exited" from="ZoneOfControl" to="." method="_on_zone_of_control_body_exited"]
+[connection signal="area_entered" from="ZoneOfAttack" to="." method="_on_zone_of_attack_area_entered"]
+[connection signal="body_entered" from="ZoneOfAttack" to="." method="_on_zone_of_attack_body_entered"]
+[connection signal="body_exited" from="ZoneOfAttack" to="." method="_on_zone_of_attack_body_exited"]
