@@ -60,14 +60,13 @@ func run_to_player():
 func hover_behaviour():
 	await get_tree().create_timer(0.1).timeout
 	if player_position_relative_x == "east" :
-		velocity -= Vector3(2,0,0)
+		velocity -= Vector3(1,0,0)
 	if player_position_relative_x == "west" :
-		velocity = Vector3(-2,0,0)
+		velocity = Vector3(-1,0,0)
 	if player_position_relative_z == "south" :
-		velocity = Vector3(0,0,-2)
+		velocity = Vector3(0,0,-1)
 	if player_position_relative_z == "north" :
-		velocity = Vector3(0,0,2)
-	return
+		velocity = Vector3(0,0,1)
 	
 	
 func idle_behaviour():
@@ -140,3 +139,4 @@ func _on_zone_of_hover_body_entered(body: Node3D) -> void:
 func _on_zone_of_hover_body_exited(body: Node3D) -> void:
 	if body is Player:
 		hover_in_range = false
+		
