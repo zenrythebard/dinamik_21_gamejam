@@ -22,13 +22,14 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [node name="Node3D" type="Node3D" unique_id=763767127]
 
-[node name="DebugHud" type="Control" parent="." unique_id=586792392]
+[node name="DebugHud" type="Control" parent="." unique_id=586792392 node_paths=PackedStringArray("player")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_l0q54")
-fps_bool = true
+health_bool = true
+player = NodePath("../Player")
 
 [node name="DebugText" type="TextEdit" parent="DebugHud" unique_id=2125451446]
 layout_mode = 0

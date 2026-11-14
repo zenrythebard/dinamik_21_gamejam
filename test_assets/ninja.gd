@@ -24,11 +24,16 @@ const JUMP_VELOCITY = 4.5
 @export var attack_interval : float = 230
 @export var base_health : float = 100
 var health : float
+@export var base_damage : float = 5
+var damage : float
+signal death
 
 func _ready() -> void:
+	damage = base_damage
 	health = base_health
 	SPEED = base_speed
 	animation_tree.active = true
+	death.connect(on_death)
 	
 func _physics_process(delta: float) -> void:
 	hurtbox.look_at(Vector3(player.global_position.x, global_position.y,player.global_position.z))
@@ -172,6 +177,11 @@ func _on_zone_of_attack_body_exited(body: Node3D) -> void:
 var knockback : Vector3
 @export var weight : float = 1
 func _on_hitbox_area_entered(area: HurtboxPlayer) -> void:
-	health -= 2
+	health -= area.main_body.damage
 	var knock_dir : Vector3 = -(area.global_position - global_position).normalized()
-	knockback = knock_dir * 1 / weight
+	knockback = knock_dir * 10 / weight
+	if health < 1:
+		emit_signal("death")
+		
+func on_death():
+	queue_free()

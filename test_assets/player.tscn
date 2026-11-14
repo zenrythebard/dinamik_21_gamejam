@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bmjpb7m47sepc"]
 
 [ext_resource type="Script" uid="uid://bgt0x8vnrh1yu" path="res://test_assets/test_character_body_3d.gd" id="1_x8nt6"]
-[ext_resource type="Texture2D" uid="uid://cfyjdavolww0x" path="res://test_assets/Guard Attack.png" id="2_m4kpu"]
 [ext_resource type="Script" uid="uid://8iljajrobc7b" path="res://test_assets/animated_sprite_3d.gd" id="3_m4kpu"]
+[ext_resource type="Texture2D" uid="uid://d4nvh577j784e" path="res://test_assets/guard sprite (1).png" id="3_o1qfp"]
 [ext_resource type="SpriteFrames" uid="uid://cafvspclrkrcp" path="res://player_sprite_frames.tres" id="4_a8lx0"]
 [ext_resource type="Script" uid="uid://dv6pumywvnfcm" path="res://test_assets/hurtbox_player.gd" id="4_bs657"]
 [ext_resource type="Script" uid="uid://vxypfxt5esft" path="res://test_assets/hitbox_player.gd" id="5_o1qfp"]
@@ -42,16 +42,16 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8lx0"]
-atlas = ExtResource("2_m4kpu")
-region = Rect2(0, 250, 112, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h7nl"]
+atlas = ExtResource("3_o1qfp")
+region = Rect2(0, 0, 37, 50)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m4kpu"]
 render_priority = 1
 shader = SubResource("Shader_m4kpu")
 shader_parameter/active = false
 shader_parameter/flash_color = Color(0.5488363, 0.8390103, 1, 1)
-shader_parameter/tex = SubResource("AtlasTexture_a8lx0")
+shader_parameter/tex = SubResource("AtlasTexture_0h7nl")
 shader_parameter/use_billboard = true
 shader_parameter/growth_amt = 0.6
 shader_parameter/tint = 1.0
@@ -990,8 +990,8 @@ points = PackedVector3Array(0, 0, 0, -40, 0, 20, -40, 0, -20)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x8nt6"]
 points = PackedVector3Array(0, 0, 0, 40, 0, 20, 40, 0, -20)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o1qfp"]
-points = PackedVector3Array(0, 0, 0, -2, 0, -1, -4, -1, -4, 4, -1, -4, 2, 0, -1, 4, 1, -4, -4, 1, -4)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_m4kpu"]
+points = PackedVector3Array(0, 0, 0, -1, 0, -1, -2, -1, -2, 2, -1, -2, 1, 0, -1, 2, 1, -2, -2, 1, -2)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p5viw"]
 radius = 0.25
@@ -1005,6 +1005,7 @@ height = 1.0
 script = ExtResource("1_x8nt6")
 base_speed = 3.0
 dash_strength = 5.0
+weight = 12.0
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1171916046]
 transform = Transform3D(3.945, 0, 0, 0, 3.8105772, 1.0210412, 0, -1.0210412, 3.8105772, 0, 0, 0)
@@ -1071,14 +1072,15 @@ spring_length = 4.03
 [node name="Camera3D" type="Camera3D" parent="RotationPoint/SpringArm3D" unique_id=934735924]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
 
-[node name="Hurtbox" type="Area3D" parent="RotationPoint" unique_id=433893785]
+[node name="Hurtbox" type="Area3D" parent="RotationPoint" unique_id=433893785 node_paths=PackedStringArray("main_body")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.12, 0)
 monitorable = false
 script = ExtResource("4_bs657")
+main_body = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Hurtbox" unique_id=1997969676]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, 0.24905556)
-shape = SubResource("ConvexPolygonShape3D_o1qfp")
+shape = SubResource("ConvexPolygonShape3D_m4kpu")
 debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=344078812]

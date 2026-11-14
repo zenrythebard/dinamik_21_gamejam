@@ -21,8 +21,9 @@ animation = &"attack_right"
 animation = &"attack_backward"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_5xeig"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_ugkvk")
-blend_point_0/pos = Vector2(0, 0.1)
+blend_point_0/pos = Vector2(0, -0.1)
 blend_point_0/name = &"attack_forward"
 blend_point_1/node = SubResource("AnimationNodeAnimation_taggi")
 blend_point_1/pos = Vector2(-0.1, 0)
@@ -31,7 +32,7 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_indeb")
 blend_point_2/pos = Vector2(0.1, 0)
 blend_point_2/name = &"attack_right"
 blend_point_3/node = SubResource("AnimationNodeAnimation_2avmo")
-blend_point_3/pos = Vector2(0, -0.1)
+blend_point_3/pos = Vector2(0, 0.1)
 blend_point_3/name = &"attack_backward"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_071xj"]
@@ -69,6 +70,7 @@ blend_point_3/pos = Vector2(-0.1, 0)
 blend_point_3/name = &"walk_left"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jc63w"]
+graph_offset = Vector2(-444.2254, 96.168274)
 nodes/output/position = Vector2(560, 176)
 nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_wurd0")
 nodes/oneshot_attack/position = Vector2(304, 144)
@@ -867,20 +869,22 @@ radius = 0.1
 radius = 4.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_071xj"]
-radius = 0.6
+radius = 1.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4t13w"]
 radius = 0.1
 height = 1.0
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sq7cc"]
-points = PackedVector3Array(0, 0, 0, -1, 0, -1, -2, -1, -2, 2, -1, -2, 1, 0, -1, 2, 1, -2, -2, 1, -2)
+points = PackedVector3Array(0, 0, 0, -1, 0, -1, -2, -1, -2, 2, -1, -2, 1, 0, -1, 2, 0.5, -2, -2, 0.5, -2)
 
 [node name="Ninja" type="CharacterBody3D" unique_id=1572494235 node_paths=PackedStringArray("sprite", "animation_tree", "animation_player")]
 script = ExtResource("1_071xj")
 sprite = NodePath("AnimatedSprite3D")
 animation_tree = NodePath("AnimationTree")
 animation_player = NodePath("AnimationPlayer")
+base_health = 10.0
+weight = 10.0
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1326933241]
 active = false
@@ -891,7 +895,7 @@ parameters/oneshot_attack/internal_active = false
 parameters/oneshot_attack/request = 0
 parameters/walk/blend_position = Vector2(0.023608804, 0.06849313)
 parameters/blend_walk/blend_amount = 0.0
-parameters/attack/blend_position = Vector2(0, 0)
+parameters/attack/blend_position = Vector2(0.0016233921, 0.13242006)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1989594591]
 libraries/ = SubResource("AnimationLibrary_4vfer")
@@ -929,11 +933,12 @@ script = ExtResource("4_4t13w")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14830351, 0)
 shape = SubResource("CapsuleShape3D_4t13w")
 
-[node name="Hurtbox" type="Area3D" parent="." unique_id=2128364079]
+[node name="Hurtbox" type="Area3D" parent="." unique_id=2128364079 node_paths=PackedStringArray("main_body")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07343745, 0)
 monitoring = false
 monitorable = false
 script = ExtResource("5_4t13w")
+main_body = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=125661826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, 0.24905556)
