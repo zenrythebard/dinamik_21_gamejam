@@ -34,17 +34,19 @@ func _physics_process(delta: float) -> void:
 	direction_relative_to_player()
 
 func ninja_behaviour():
+	#moving to zone control
 	if target:
 		if follow_player:
 			if player_in_range == false:
 				run_to_player()
 			elif first_strike == true:
-				run_to_player()
+				attack_behaviour()
 			else:
-				idle_behaviour()
+				hover_behaviour()
 	else:
 		idle_behaviour()
-
+	
+	
 func run_to_player():
 	await get_tree().create_timer(0.1).timeout
 	target_pos = target.position
@@ -56,6 +58,7 @@ func run_to_player():
 	animation_tree["parameters/blend_walk/blend_amount"] = 1
 	
 func hover_behaviour():
+	
 	return
 	
 func idle_behaviour():
@@ -64,22 +67,16 @@ func idle_behaviour():
 	velocity.z = move_toward(velocity.z, 0, SPEED)
 	animation_tree["parameters/blend_walk/blend_amount"] = 0
 	
-	
-func first_strike_behaviour():
-	if first_strike == true :
-		if attack_in_range == false :
-			run_to_player()
-		else :
-			
-			
-			return
-			
 func attack_behaviour():
-	return
+	if attack_in_range == false :
+		run_to_player()
+	else :
+		animation_tree["parameters/walk/blend_position"] = player_facing
+		animation_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		print ("attacked")
+		player #animation and collision to attack player (not finished)
+		first_strike = false
 		
-
-	
-	
 var player_position_relative_x : String
 var player_position_relative_z : String
 
