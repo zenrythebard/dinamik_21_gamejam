@@ -8,8 +8,11 @@ var SPEED : float
 const JUMP_VELOCITY = 4.5
 @onready var rotation_point: Node3D = $RotationPoint
 var mouse_delta : Vector2  
+@export var base_health : float = 100
+var health : float
 
 func _ready() -> void:
+	health = base_health
 	SPEED = base_speed
 	animation_tree.active = true
 	Input.mouse_mode = 2
@@ -56,6 +59,8 @@ func _physics_process(delta: float) -> void:
 			SPEED = base_speed
 	
 	move_and_slide()
+	move_and_collide(knockback)
+	knockback = knockback.move_toward(Vector3.ZERO, 0.1)
 	
 	animation_tree["parameters/walk/blend_position"] = anim_dir
 	
@@ -116,3 +121,10 @@ func _on_back_body_entered(body: Ninja) -> void:
 	body.player_facing.y = -1
 	prev_facing_direction.y = -1
 	
+
+var knockback : Vector3
+@export var weight : float = 1
+func _on_hitbox_area_entered(area: HurtboxNinja) -> void:
+	health -= 2
+	var knock_dir : Vector3 = -(area.global_position - global_position).normalized()
+	knockback = knock_dir * 1 / weight
