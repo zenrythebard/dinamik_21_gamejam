@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 	#if is_on_floor():
 		#velocity.y = JUMP_VELOCITY
 	ninja_behaviour()
-	print (await delta_distance_to_player_calc())
 	move_and_slide()
 
 func ninja_behaviour():
@@ -50,7 +49,10 @@ func run_to_player():
 	var next_path_pos : Vector3 = nav_agent.get_next_path_position()
 	var direction : Vector3 = global_position.direction_to(next_path_pos)
 	velocity = direction * SPEED
-	animation_player.play("walk_backward")
+	if player_facing == 1:
+		animation_player.play("walk_backward")
+	elif player_facing == 2:
+		animation_player.play("walk_forward")
 	
 func delta_distance_to_player_calc() -> bool:
 	var prev_dis : float
