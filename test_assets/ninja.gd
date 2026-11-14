@@ -162,14 +162,3 @@ func _on_zone_of_attack_body_entered(body: Node3D) -> void:
 func _on_zone_of_attack_body_exited(body: Node3D) -> void:
 	if body is Player:
 		attack_in_range = false
-		
-
-
-func _on_zone_of_hover_body_entered(body: Node3D) -> void:
-	if body is Player: 
-		hover_in_range = true
-		
-func _on_zone_of_hover_body_exited(body: Node3D) -> void:
-	if body is Player:
-		hover_in_range = false
-		
