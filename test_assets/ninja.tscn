@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://skj78n5g6epw"]
 
 [ext_resource type="Script" uid="uid://gxi1aa0nmian" path="res://test_assets/ninja.gd" id="1_071xj"]
+[ext_resource type="Shader" uid="uid://cj4f0rcoojrdf" path="res://test_assets/tint.gdshader" id="2_vsbne"]
 [ext_resource type="Texture2D" uid="uid://cfyjdavolww0x" path="res://test_assets/Guard Attack.png" id="2_wurd0"]
 [ext_resource type="Texture2D" uid="uid://d4nvh577j784e" path="res://test_assets/guard sprite (1).png" id="3_4t13w"]
 [ext_resource type="Script" uid="uid://crqrrdbydw018" path="res://test_assets/hitbox_ninja.gd" id="4_4t13w"]
+[ext_resource type="Script" uid="uid://8iljajrobc7b" path="res://test_assets/animated_sprite_3d.gd" id="4_sq7cc"]
 [ext_resource type="Script" uid="uid://dq8yo0j2dr1n5" path="res://test_assets/hurtbox_ninja.gd" id="5_4t13w"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ugkvk"]
@@ -133,7 +135,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_x8nt6"]
 resource_name = "attack_backward"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -185,7 +187,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_3388h"]
 resource_name = "attack_forward"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -237,7 +239,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_bs657"]
 resource_name = "attack_side"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -289,7 +291,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_o1qfp"]
 resource_name = "attack_right"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -541,6 +543,21 @@ _data = {
 &"walk_right": SubResource("Animation_t5mk5")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h7nl"]
+atlas = ExtResource("3_4t13w")
+region = Rect2(0, 0, 37, 50)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sq7cc"]
+render_priority = 0
+shader = ExtResource("2_vsbne")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 0.2, 0.2, 1)
+shader_parameter/tex = SubResource("AtlasTexture_0h7nl")
+shader_parameter/use_billboard = true
+shader_parameter/growth_amt = 0.0
+shader_parameter/tint = 0.5
+shader_parameter/fade = 0.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_071xj"]
 atlas = ExtResource("2_wurd0")
 region = Rect2(74, 0, 37, 50)
@@ -624,10 +641,6 @@ region = Rect2(74, 350, 37, 50)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mcnk3"]
 atlas = ExtResource("3_4t13w")
 region = Rect2(74, 400, 37, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0h7nl"]
-atlas = ExtResource("3_4t13w")
-region = Rect2(0, 0, 37, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mer1j"]
 atlas = ExtResource("3_4t13w")
@@ -868,7 +881,6 @@ script = ExtResource("1_071xj")
 sprite = NodePath("AnimatedSprite3D")
 animation_tree = NodePath("AnimationTree")
 animation_player = NodePath("AnimationPlayer")
-SPEED = 2.5
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1326933241]
 active = false
@@ -886,10 +898,12 @@ libraries/ = SubResource("AnimationLibrary_4vfer")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1007263892]
 transform = Transform3D(3.945, 0, 0, 0, 3.8105772, 1.0210412, 0, -1.0210412, 3.8105772, 0, 0, 0)
+material_overlay = SubResource("ShaderMaterial_sq7cc")
 billboard = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_1icll")
 animation = &"walk_forward"
+script = ExtResource("4_sq7cc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1862275785]
 shape = SubResource("CapsuleShape3D_fe3hl")
@@ -908,7 +922,6 @@ debug_color = Color(8.7236984e-08, 0.11272059, 0.13832667, 0.42)
 shape = SubResource("CylinderShape3D_071xj")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=1911091732]
-monitoring = false
 monitorable = false
 script = ExtResource("4_4t13w")
 
@@ -918,6 +931,7 @@ shape = SubResource("CapsuleShape3D_4t13w")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=2128364079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07343745, 0)
+monitoring = false
 monitorable = false
 script = ExtResource("5_4t13w")
 
@@ -931,3 +945,4 @@ debug_color = Color(1, 1, 1, 0.41960785)
 [connection signal="area_entered" from="ZoneOfAttack" to="." method="_on_zone_of_attack_area_entered"]
 [connection signal="body_entered" from="ZoneOfAttack" to="." method="_on_zone_of_attack_body_entered"]
 [connection signal="body_exited" from="ZoneOfAttack" to="." method="_on_zone_of_attack_body_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
