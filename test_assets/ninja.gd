@@ -1,6 +1,6 @@
 class_name Ninja
 extends CharacterBody3D
-
+@onready var hurtbox: HurtboxNinja = $Hurtbox
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var target : CharacterBody3D
 @onready var player : CharacterBody3D = %Player
@@ -27,6 +27,7 @@ func _ready() -> void:
 	animation_tree.active = true
 	
 func _physics_process(delta: float) -> void:
+	hurtbox.look_at(Vector3(player.global_position.x, global_position.y,player.global_position.z))
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

@@ -69,7 +69,11 @@ animation = &"attack_left"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sq7cc"]
 animation = &"attack_right"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uiw7y"]
+animation = &"attack_forward"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bs657"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_071xj")
 blend_point_0/pos = Vector2(0, 0.4)
 blend_point_0/name = &"attack_forward"
@@ -82,6 +86,9 @@ blend_point_2/name = &"attack_left"
 blend_point_3/node = SubResource("AnimationNodeAnimation_sq7cc")
 blend_point_3/pos = Vector2(0.1, 0)
 blend_point_3/name = &"attack_right"
+blend_point_4/node = SubResource("AnimationNodeAnimation_uiw7y")
+blend_point_4/pos = Vector2(0, 0)
+blend_point_4/name = &"attack_forward 2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m4kpu"]
 animation = &"dash_forward"
@@ -153,7 +160,7 @@ blend_point_4/pos = Vector2(0, 0)
 blend_point_4/name = &"idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3388h"]
-graph_offset = Vector2(201.32263, -46.518677)
+graph_offset = Vector2(-199.38843, 219.14607)
 nodes/output/position = Vector2(1104, 96)
 nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_dahie")
 nodes/walk/position = Vector2(300, -40)
@@ -1016,7 +1023,7 @@ parameters/walk/blend_position = Vector2(0, 0)
 parameters/oneshot_attack/active = false
 parameters/oneshot_attack/internal_active = false
 parameters/oneshot_attack/request = 0
-parameters/attack/blend_position = Vector2(0.015901089, 0.31506848)
+parameters/attack/blend_position = Vector2(0.30681813, 0.34246576)
 parameters/oneshot_dash/active = false
 parameters/oneshot_dash/internal_active = false
 parameters/oneshot_dash/request = 0
