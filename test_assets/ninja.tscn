@@ -177,7 +177,7 @@ tracks/3/path = NodePath("Hurtbox:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0048877746, 0.26275647, 0.26666668),
+"times": PackedFloat32Array(0, 0.15833333, 0.26275647, 0.26666668),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
@@ -229,7 +229,7 @@ tracks/3/path = NodePath("Hurtbox:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0051050093, 0.26188752, 0.26666668),
+"times": PackedFloat32Array(0, 0.15, 0.26188752, 0.26666668),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
@@ -269,7 +269,7 @@ tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [false]
@@ -281,7 +281,7 @@ tracks/3/path = NodePath("Hurtbox:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0051050093, 0.2624306, 0.26666668),
+"times": PackedFloat32Array(0, 0.15833333, 0.2624306, 0.26666668),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
@@ -333,7 +333,7 @@ tracks/3/path = NodePath("Hurtbox:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.005430861, 0.26123583, 0.26666668),
+"times": PackedFloat32Array(0, 0.15833333, 0.26123583, 0.26666668),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
