@@ -18,16 +18,12 @@ var player_facing : Vector2
 @export var animation_tree: AnimationTree 
 @export var animation_player: AnimationPlayer  
 var attack_timer : float = 0
-@export var base_speed : float
-var SPEED : float
+@export var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @export var attack_interval : float = 230
-@export var base_health : float = 100
-var health : float
+
 
 func _ready() -> void:
-	health = base_health
-	SPEED = base_speed
 	animation_tree.active = true
 	
 func _physics_process(delta: float) -> void:
@@ -39,8 +35,6 @@ func _physics_process(delta: float) -> void:
 	#if is_on_floor():
 		#velocity.y = JUMP_VELOCITY
 	move_and_slide()
-	move_and_collide(knockback)
-	knockback = knockback.move_toward(Vector3.ZERO, 0.1)
 	ninja_behaviour()
 	direction_relative_to_player()
 
@@ -168,24 +162,3 @@ func _on_zone_of_attack_body_entered(body: Node3D) -> void:
 func _on_zone_of_attack_body_exited(body: Node3D) -> void:
 	if body is Player:
 		attack_in_range = false
-<<<<<<< Updated upstream
-=======
-		
-
-
-func _on_zone_of_hover_body_entered(body: Node3D) -> void:
-	if body is Player: 
-		hover_in_range = true
-		
-func _on_zone_of_hover_body_exited(body: Node3D) -> void:
-	if body is Player:
-		hover_in_range = false
-
-var knockback : Vector3
-@export var weight : float = 1
-func _on_hitbox_area_entered(area: HurtboxPlayer) -> void:
-	health -= 2
-	var knock_dir : Vector3 = -(area.global_position - global_position).normalized()
-	knockback = knock_dir * 7 / weight
-	
->>>>>>> Stashed changes

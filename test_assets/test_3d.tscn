@@ -134,3 +134,4 @@ shape = SubResource("ConcavePolygonShape3D_e4pr7")
 [node name="Ninja" parent="." unique_id=1572494235 node_paths=PackedStringArray("target") instance=ExtResource("3_e4pr7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42801857, 1.7996109, -13.626884)
 target = NodePath("../Player")
+SPEED = 2.0
