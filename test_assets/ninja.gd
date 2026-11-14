@@ -11,14 +11,18 @@ var attack_initiative : bool = true
 var able_attack : bool = false
 var attack_in_range : bool = false
 var hover_in_range : bool = false
+var retreat_step : bool = false
+var finished_retreating : bool = false
 var player_facing : Vector2 
 @export var sprite: AnimatedSprite3D 
 @export var animation_tree: AnimationTree 
 @export var animation_player: AnimationPlayer  
-
+var attack_timer : float = 0
 @export var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-	
+@export var attack_interval : float = 230
+
+
 func _ready() -> void:
 	animation_tree.active = true
 	
@@ -29,26 +33,26 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	#if is_on_floor():
 		#velocity.y = JUMP_VELOCITY
-	ninja_behaviour()
 	move_and_slide()
+	ninja_behaviour()
 	direction_relative_to_player()
-	print(attack_initiative)
+
 func ninja_behaviour():
+	print(attack_initiative)
 	#moving to zone control
-	if target:
-		if follow_player:
-			if player_in_range == false:
-				run_to_player()
-			elif attack_initiative == true:
-				attack_behaviour()
-			else:
-				hover_behaviour()
-	else:
-		idle_behaviour()
+	if not target or not follow_player:
+		return
+	if retreat_step:
+		retreat_step_behaviour()
+	elif attack_initiative:
+		if attack_in_range:
+			attack_behaviour()
+		else:
+			run_to_player()
+
 	
 	
 func run_to_player():
-	await get_tree().create_timer(0.1).timeout
 	target_pos = target.position
 	nav_agent.target_position = target_pos
 	var next_path_pos : Vector3 = nav_agent.get_next_path_position()
@@ -56,17 +60,45 @@ func run_to_player():
 	velocity = direction * SPEED
 	animation_tree["parameters/walk/blend_position"] = player_facing
 	animation_tree["parameters/blend_walk/blend_amount"] = 1
-	
-func hover_behaviour():
-	await get_tree().create_timer(0.1).timeout
+
+func retreat_step_behaviour():
+	if attack_initiative == true:
+		return
+	animation_tree["parameters/walk/blend_position"] = player_facing
+	animation_tree["parameters/blend_walk/blend_amount"] = 1
 	if player_position_relative_x == "east" :
-		velocity -= Vector3(1,0,0)
+		velocity = Vector3(1,0,0)
 	if player_position_relative_x == "west" :
 		velocity = Vector3(-1,0,0)
 	if player_position_relative_z == "south" :
 		velocity = Vector3(0,0,-1)
 	if player_position_relative_z == "north" :
 		velocity = Vector3(0,0,1)
+	if not player_in_range:
+		retreat_step = false
+		attack_initiative = true
+	elif player_in_range:
+		attack_timer += 1
+		if attack_timer > attack_interval:
+			attack_timer = 0
+			retreat_step = false
+			attack_initiative = true
+	
+func hover_behaviour():
+	await get_tree().create_timer(0.1).timeout
+	velocity.x = move_toward(velocity.x, 0, SPEED)
+	velocity.z = move_toward(velocity.z, 0, SPEED)
+	animation_tree["parameters/blend_walk/blend_amount"] = 0
+	await get_tree().create_timer(0.5).timeout
+	animation_tree["parameters/walk/blend_position"] = player_facing
+	animation_tree["parameters/blend_walk/blend_amount"] = 1
+	velocity.x = 2
+	velocity.z = 2
+	await get_tree().create_timer(2).timeout
+	velocity.x = -2
+	velocity.z = 2
+	await get_tree().create_timer(2).timeout
+	attack_initiative = true
 	
 	
 func idle_behaviour():
@@ -76,15 +108,15 @@ func idle_behaviour():
 	animation_tree["parameters/blend_walk/blend_amount"] = 0
 	
 func attack_behaviour():
-	if attack_in_range == false :
-		run_to_player()
-	else :
-		animation_tree["parameters/walk/blend_position"] = player_facing
-		animation_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-		print ("attacked")
-		player #animation and collision to attack player (not finished)
+		if animation_tree.get("parameters/oneshot_attack/active") == true:
+			return
 		attack_initiative = false
+		animation_tree["parameters/attack/blend_position"] = player_facing
+		animation_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		retreat_step = true
+		#player #animation and collision to attack player (not finished)
 		SPEED = 2
+
 var player_position_relative_x : String
 var player_position_relative_z : String
 
@@ -115,7 +147,7 @@ func delta_distance_to_player_calc() -> bool:
 func _on_zone_of_control_body_entered(body: Node3D) -> void:
 	if body is Player:
 		player_in_range = true
-		print("inside")
+ 
 
 func _on_zone_of_control_body_exited(body: Node3D) -> void:
 	if body is Player:
@@ -124,7 +156,7 @@ func _on_zone_of_control_body_exited(body: Node3D) -> void:
 func _on_zone_of_attack_body_entered(body: Node3D) -> void:
 	if body is Player:
 		attack_in_range = true
-		print ("attack_able")
+ 
 		
 func _on_zone_of_attack_body_exited(body: Node3D) -> void:
 	if body is Player:

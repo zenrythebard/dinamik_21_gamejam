@@ -65,7 +65,7 @@ blend_point_3/pos = Vector2(-0.1, 0)
 blend_point_3/name = &"walk_left"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jc63w"]
-graph_offset = Vector2(-401.70135, 31.709497)
+graph_offset = Vector2(-306.23248, 102.20577)
 nodes/output/position = Vector2(560, 176)
 nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_wurd0")
 nodes/oneshot_attack/position = Vector2(304, 144)
@@ -787,12 +787,13 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fe3hl"]
+radius = 0.1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1icll"]
 radius = 4.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_071xj"]
-radius = 1.663
+radius = 0.6
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j8iw7"]
 radius = 4.5
@@ -842,8 +843,10 @@ debug_color = Color(8.7236984e-08, 0.11272059, 0.13832667, 0.42)
 shape = SubResource("CylinderShape3D_071xj")
 
 [node name="ZoneOfHover" type="Area3D" parent="." unique_id=1474141966]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneOfHover" unique_id=988678112]
+visible = false
 shape = SubResource("CylinderShape3D_j8iw7")
 
 [connection signal="body_entered" from="ZoneOfControl" to="." method="_on_zone_of_control_body_entered"]

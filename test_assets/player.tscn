@@ -987,9 +987,11 @@ points = PackedVector3Array(0, 0, 0, 40, 0, 20, 40, 0, -20)
 points = PackedVector3Array(0, 0, 0, -2, 0, -1, -4, -1, -4, 4, -1, -4, 2, 0, -1, 4, 1, -4, -4, 1, -4)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p5viw"]
+radius = 0.25
+height = 1.6
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uj04i"]
-radius = 0.2
+radius = 0.1
 height = 1.0
 
 [node name="Player" type="CharacterBody3D" unique_id=467720308]
@@ -1073,6 +1075,7 @@ shape = SubResource("ConvexPolygonShape3D_o1qfp")
 debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=344078812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2858951, 0)
 shape = SubResource("CapsuleShape3D_p5viw")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=2144873591]
