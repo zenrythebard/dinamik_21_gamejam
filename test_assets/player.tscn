@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bmjpb7m47sepc"]
 
 [ext_resource type="Script" uid="uid://bgt0x8vnrh1yu" path="res://test_assets/test_character_body_3d.gd" id="1_x8nt6"]
+[ext_resource type="Texture2D" uid="uid://cfyjdavolww0x" path="res://test_assets/Guard Attack.png" id="2_m4kpu"]
 [ext_resource type="Script" uid="uid://8iljajrobc7b" path="res://test_assets/animated_sprite_3d.gd" id="3_m4kpu"]
-[ext_resource type="Texture2D" uid="uid://d4nvh577j784e" path="res://test_assets/guard sprite (1).png" id="3_o1qfp"]
 [ext_resource type="SpriteFrames" uid="uid://cafvspclrkrcp" path="res://player_sprite_frames.tres" id="4_a8lx0"]
 [ext_resource type="Script" uid="uid://dv6pumywvnfcm" path="res://test_assets/hurtbox_player.gd" id="4_bs657"]
 [ext_resource type="Script" uid="uid://vxypfxt5esft" path="res://test_assets/hitbox_player.gd" id="5_o1qfp"]
@@ -42,16 +42,16 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0h7nl"]
-atlas = ExtResource("3_o1qfp")
-region = Rect2(0, 0, 37, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8lx0"]
+atlas = ExtResource("2_m4kpu")
+region = Rect2(0, 250, 112, 50)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m4kpu"]
 render_priority = 1
 shader = SubResource("Shader_m4kpu")
 shader_parameter/active = false
 shader_parameter/flash_color = Color(0.5488363, 0.8390103, 1, 1)
-shader_parameter/tex = SubResource("AtlasTexture_0h7nl")
+shader_parameter/tex = SubResource("AtlasTexture_a8lx0")
 shader_parameter/use_billboard = true
 shader_parameter/growth_amt = 0.6
 shader_parameter/tint = 1.0
@@ -307,7 +307,7 @@ tracks/3/path = NodePath("RotationPoint/Hurtbox:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.06666668, 0.3, 0.33333334),
+"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.33333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
@@ -371,7 +371,7 @@ tracks/3/path = NodePath("RotationPoint/Hurtbox:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.06666668, 0.3, 0.33333334),
+"times": PackedFloat32Array(0, 0.15833333, 0.3, 0.33333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
@@ -435,7 +435,7 @@ tracks/3/path = NodePath("RotationPoint/Hurtbox:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.06666668, 0.3, 0.33333334),
+"times": PackedFloat32Array(0, 0.14166667, 0.3, 0.33333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
@@ -499,7 +499,7 @@ tracks/3/path = NodePath("RotationPoint/Hurtbox:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.06666668, 0.3, 0.33333334),
+"times": PackedFloat32Array(0, 0.14166667, 0.3, 0.33333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
