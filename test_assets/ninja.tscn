@@ -65,7 +65,7 @@ blend_point_3/pos = Vector2(-0.1, 0)
 blend_point_3/name = &"walk_left"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jc63w"]
-graph_offset = Vector2(-360.90137, 105.309494)
+graph_offset = Vector2(-401.70135, 31.709497)
 nodes/output/position = Vector2(560, 176)
 nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_wurd0")
 nodes/oneshot_attack/position = Vector2(304, 144)
@@ -512,6 +512,22 @@ region = Rect2(0, 100, 37, 50)
 atlas = ExtResource("2_wurd0")
 region = Rect2(0, 150, 37, 50)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsbne"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(37, 250, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugkvk"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(37, 300, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taggi"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(37, 350, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_indeb"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(37, 400, 37, 50)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0q54"]
 atlas = ExtResource("3_4t13w")
 region = Rect2(74, 0, 37, 50)
@@ -658,6 +674,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vsbne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugkvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taggi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_indeb")
+}],
+"loop": 1,
+"name": &"attack_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_l0q54")
 }, {
 "duration": 1.0,
@@ -761,6 +794,9 @@ radius = 4.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_071xj"]
 radius = 1.663
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j8iw7"]
+radius = 4.5
+
 [node name="Ninja" type="CharacterBody3D" unique_id=1572494235 node_paths=PackedStringArray("sprite", "animation_tree", "animation_player")]
 script = ExtResource("1_071xj")
 sprite = NodePath("AnimatedSprite3D")
@@ -805,8 +841,15 @@ debug_color = Color(8.7236984e-08, 0.11272059, 0.13832667, 0.42)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneOfAttack" unique_id=1417662229]
 shape = SubResource("CylinderShape3D_071xj")
 
+[node name="ZoneOfHover" type="Area3D" parent="." unique_id=1474141966]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneOfHover" unique_id=988678112]
+shape = SubResource("CylinderShape3D_j8iw7")
+
 [connection signal="body_entered" from="ZoneOfControl" to="." method="_on_zone_of_control_body_entered"]
 [connection signal="body_exited" from="ZoneOfControl" to="." method="_on_zone_of_control_body_exited"]
 [connection signal="area_entered" from="ZoneOfAttack" to="." method="_on_zone_of_attack_area_entered"]
 [connection signal="body_entered" from="ZoneOfAttack" to="." method="_on_zone_of_attack_body_entered"]
 [connection signal="body_exited" from="ZoneOfAttack" to="." method="_on_zone_of_attack_body_exited"]
+[connection signal="body_entered" from="ZoneOfHover" to="." method="_on_zone_of_hover_body_entered"]
+[connection signal="body_exited" from="ZoneOfHover" to="." method="_on_zone_of_hover_body_exited"]

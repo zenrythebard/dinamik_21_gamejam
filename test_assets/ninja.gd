@@ -7,9 +7,10 @@ extends CharacterBody3D
 var target_pos : Vector3
 var follow_player : bool = true
 var player_in_range : bool = false
-var first_strike : bool = false
+var attack_initiative : bool = true
 var able_attack : bool = false
 var attack_in_range : bool = false
+var hover_in_range : bool = false
 var player_facing : Vector2 
 @export var sprite: AnimatedSprite3D 
 @export var animation_tree: AnimationTree 
@@ -25,21 +26,20 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
 	# Handle jump.
 	#if is_on_floor():
 		#velocity.y = JUMP_VELOCITY
 	ninja_behaviour()
 	move_and_slide()
 	direction_relative_to_player()
-
+	print(attack_initiative)
 func ninja_behaviour():
 	#moving to zone control
 	if target:
 		if follow_player:
 			if player_in_range == false:
 				run_to_player()
-			elif first_strike == true:
+			elif attack_initiative == true:
 				attack_behaviour()
 			else:
 				hover_behaviour()
@@ -58,8 +58,17 @@ func run_to_player():
 	animation_tree["parameters/blend_walk/blend_amount"] = 1
 	
 func hover_behaviour():
-	
+	await get_tree().create_timer(0.1).timeout
+	if player_position_relative_x == "east" :
+		velocity -= Vector3(2,0,0)
+	if player_position_relative_x == "west" :
+		velocity = Vector3(-2,0,0)
+	if player_position_relative_z == "south" :
+		velocity = Vector3(0,0,-2)
+	if player_position_relative_z == "north" :
+		velocity = Vector3(0,0,2)
 	return
+	
 	
 func idle_behaviour():
 	await get_tree().create_timer(0.1).timeout
@@ -75,8 +84,8 @@ func attack_behaviour():
 		animation_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 		print ("attacked")
 		player #animation and collision to attack player (not finished)
-		first_strike = false
-		
+		attack_initiative = false
+		SPEED = 2
 var player_position_relative_x : String
 var player_position_relative_z : String
 
@@ -122,3 +131,12 @@ func _on_zone_of_attack_body_exited(body: Node3D) -> void:
 	if body is Player:
 		attack_in_range = false
 		
+
+
+func _on_zone_of_hover_body_entered(body: Node3D) -> void:
+	if body is Player: 
+		hover_in_range = true
+		
+func _on_zone_of_hover_body_exited(body: Node3D) -> void:
+	if body is Player:
+		hover_in_range = false
