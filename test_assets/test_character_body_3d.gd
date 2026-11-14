@@ -1,6 +1,6 @@
 class_name Player
 extends CharacterBody3D
-
+@onready var hurtbox: Area3D = $RotationPoint/Hurtbox
 @onready var animation_tree: AnimationTree = $AnimationTree
 @export var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
