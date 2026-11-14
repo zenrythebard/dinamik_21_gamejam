@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bgt0x8vnrh1yu" path="res://test_assets/test_character_body_3d.gd" id="1_x8nt6"]
 [ext_resource type="Texture2D" uid="uid://cfyjdavolww0x" path="res://test_assets/Guard Attack.png" id="2_bs657"]
 [ext_resource type="Texture2D" uid="uid://d4nvh577j784e" path="res://test_assets/guard sprite (1).png" id="3_o1qfp"]
+[ext_resource type="Script" uid="uid://dv6pumywvnfcm" path="res://test_assets/hurtbox_player.gd" id="4_bs657"]
+[ext_resource type="Script" uid="uid://vxypfxt5esft" path="res://test_assets/hitbox_player.gd" id="5_o1qfp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8nt6"]
 atlas = ExtResource("2_bs657")
@@ -322,15 +324,12 @@ animation = &"attack_left"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sq7cc"]
 animation = &"attack_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vsbne"]
-animation = &"attack_forward"
-
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bs657"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_071xj")
-blend_point_0/pos = Vector2(0, 0.1)
+blend_point_0/pos = Vector2(0, 0.4)
 blend_point_0/name = &"attack_forward"
 blend_point_1/node = SubResource("AnimationNodeAnimation_wurd0")
-blend_point_1/pos = Vector2(0, -0.1)
+blend_point_1/pos = Vector2(0, -0.4)
 blend_point_1/name = &"attack_backward"
 blend_point_2/node = SubResource("AnimationNodeAnimation_4t13w")
 blend_point_2/pos = Vector2(-0.1, 0)
@@ -338,9 +337,6 @@ blend_point_2/name = &"attack_left"
 blend_point_3/node = SubResource("AnimationNodeAnimation_sq7cc")
 blend_point_3/pos = Vector2(0.1, 0)
 blend_point_3/name = &"attack_right"
-blend_point_4/node = SubResource("AnimationNodeAnimation_vsbne")
-blend_point_4/pos = Vector2(0, 0)
-blend_point_4/name = &"attack_forward 2"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bs657"]
 
@@ -377,7 +373,7 @@ blend_point_4/pos = Vector2(0, 0)
 blend_point_4/name = &"idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3388h"]
-graph_offset = Vector2(12.80365, 121.63728)
+graph_offset = Vector2(55.384033, 142.30101)
 nodes/output/position = Vector2(1104, 96)
 nodes/walk/node = SubResource("AnimationNodeBlendSpace2D_dahie")
 nodes/walk/position = Vector2(528, 80)
@@ -425,6 +421,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [&"walk_forward"]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RotationPoint/Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RotationPoint/Hurtbox:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_x8nt6"]
 resource_name = "attack_backward"
@@ -464,6 +484,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RotationPoint/Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.3, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RotationPoint/Hurtbox:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_3388h"]
@@ -505,6 +549,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RotationPoint/Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.3, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RotationPoint/Hurtbox:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_bs657"]
 resource_name = "attack_side"
@@ -545,6 +613,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RotationPoint/Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.3, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RotationPoint/Hurtbox:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_o1qfp"]
 resource_name = "attack_right"
@@ -584,6 +676,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RotationPoint/Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.3, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RotationPoint/Hurtbox:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 4.712389, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_or781"]
@@ -800,7 +916,14 @@ points = PackedVector3Array(0, 0, 0, -40, 0, 20, -40, 0, -20)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x8nt6"]
 points = PackedVector3Array(0, 0, 0, 40, 0, 20, 40, 0, -20)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o1qfp"]
+points = PackedVector3Array(0, 0, 0, -2, 0, -1, -4, -1, -4, 4, -1, -4, 2, 0, -1, 4, 1, -4, -4, 1, -4)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p5viw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uj04i"]
+radius = 0.2
+height = 1.0
 
 [node name="Player" type="CharacterBody3D" unique_id=467720308]
 script = ExtResource("1_x8nt6")
@@ -820,17 +943,17 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/walk/blend_position = Vector2(0, 0)
 parameters/oneshot_attack/active = false
 parameters/oneshot_attack/internal_active = false
-parameters/oneshot_attack/request = 1
-parameters/attack/blend_position = Vector2(0, 0)
+parameters/oneshot_attack/request = 0
+parameters/attack/blend_position = Vector2(0.015901089, 0.31506848)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=483325376]
 libraries/ = SubResource("AnimationLibrary_or781")
 
 [node name="RotationPoint" type="Node3D" parent="." unique_id=849246549]
-transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2, 0)
 
 [node name="Front" type="Area3D" parent="RotationPoint" unique_id=1492993854]
-transform = Transform3D(1, 0, 0, 0, 0.96592635, -0.25881916, 0, 0.25881916, 0.96592635, 0, -1.8776644, -0.71987164)
+transform = Transform3D(1, 0, 0, 0, 1.0000005, 0, 0, 0, 1.0000005, 0, -1.8776644, -0.23081222)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Front" unique_id=739419436]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, 0.24905556)
@@ -838,7 +961,7 @@ shape = SubResource("ConvexPolygonShape3D_4t13w")
 debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="Back" type="Area3D" parent="RotationPoint" unique_id=1520725833]
-transform = Transform3D(1, 0, 0, 0, 0.96592635, -0.25881916, 0, 0.25881916, 0.96592635, 0, -1.8776644, -0.71987164)
+transform = Transform3D(1, 0, 0, 0, 1.0000005, 0, 0, 0, 1.0000005, 0, -1.8776644, -0.23081222)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Back" unique_id=690435585]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, 0.24905556)
@@ -846,14 +969,14 @@ shape = SubResource("ConvexPolygonShape3D_bs657")
 debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="Left" type="Area3D" parent="RotationPoint" unique_id=1623363201]
-transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, -1.9426186, -0.47745818)
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, -1.9426186, 0.01160127)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Left" unique_id=1760319386]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_uj04i")
 
 [node name="Right" type="Area3D" parent="RotationPoint" unique_id=102592536]
-transform = Transform3D(1, 0, 0, 0, 0.96592605, -0.2588191, 0, 0.2588191, 0.96592605, 0, -1.9426186, -0.47745818)
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, -1.9426186, 0.01160127)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Right" unique_id=62421260]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -863,9 +986,29 @@ shape = SubResource("ConvexPolygonShape3D_x8nt6")
 spring_length = 4.03
 
 [node name="Camera3D" type="Camera3D" parent="RotationPoint/SpringArm3D" unique_id=934735924]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
+
+[node name="Hurtbox" type="Area3D" parent="RotationPoint" unique_id=433893785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.12, 0)
+monitorable = false
+script = ExtResource("4_bs657")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotationPoint/Hurtbox" unique_id=1997969676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, 0.24905556)
+shape = SubResource("ConvexPolygonShape3D_o1qfp")
+debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=344078812]
 shape = SubResource("CapsuleShape3D_p5viw")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=2144873591]
+monitoring = false
+monitorable = false
+script = ExtResource("5_o1qfp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=812301822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14830351, 0)
+shape = SubResource("CapsuleShape3D_uj04i")
 
 [connection signal="body_entered" from="RotationPoint/Front" to="." method="_on_front_body_entered"]
 [connection signal="body_exited" from="RotationPoint/Front" to="." method="_on_front_body_exited"]
