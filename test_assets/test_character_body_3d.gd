@@ -99,7 +99,7 @@ func _on_back_body_exited(body: Ninja) -> void:
 	if prev_facing_direction.x == 1:
 		body.player_facing.x = 1
 	else:
-		body.player_facing.x = -1s
+		body.player_facing.x = -1
 	
 func _on_back_body_entered(body: Ninja) -> void:
 	body.player_facing.y = -1
