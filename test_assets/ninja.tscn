@@ -67,7 +67,6 @@ blend_point_3/pos = Vector2(-0.1, 0)
 blend_point_3/name = &"walk_left"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jc63w"]
-graph_offset = Vector2(-306.23248, 102.20577)
 nodes/output/position = Vector2(560, 176)
 nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_wurd0")
 nodes/oneshot_attack/position = Vector2(304, 144)
@@ -119,6 +118,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [&"walk_forward"]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_x8nt6"]
 resource_name = "attack_backward"
@@ -158,6 +169,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0048877746, 0.031281758, 0.03519198),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_3388h"]
@@ -199,6 +222,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0051050093, 0.030630056, 0.035409212),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_bs657"]
 resource_name = "attack_side"
@@ -239,6 +274,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0051050093, 0.030412821, 0.03464889),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_o1qfp"]
 resource_name = "attack_right"
@@ -278,6 +325,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.005430861, 0.0296525, 0.03508336),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_or781"]
