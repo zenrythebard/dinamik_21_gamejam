@@ -789,16 +789,16 @@ _data = {
 }
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4t13w"]
-points = PackedVector3Array(0, 0, 0, -40, 0, -10, -40, 0, -100, 40, 0, -100, 40, 0, -10)
+points = PackedVector3Array(0, 0, 0, -40, 0, -20, -40, 0, -100, 40, 0, -100, 40, 0, -20)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bs657"]
-points = PackedVector3Array(0, 0, 0, -40, 0, 10, -40, 0, 100, 40, 0, 100, 40, 0, 10)
+points = PackedVector3Array(0, 0, 0, -40, 0, 20, -40, 0, 100, 40, 0, 100, 40, 0, 20)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uj04i"]
-points = PackedVector3Array(0, 0, 0, -40, 0, 10, -40, 0, -10)
+points = PackedVector3Array(0, 0, 0, -40, 0, 20, -40, 0, -20)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x8nt6"]
-points = PackedVector3Array(0, 0, 0, 40, 0, 10, 40, 0, -10)
+points = PackedVector3Array(0, 0, 0, 40, 0, 20, 40, 0, -20)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p5viw"]
 
