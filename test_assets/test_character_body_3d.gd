@@ -2,12 +2,15 @@ class_name Player
 extends CharacterBody3D
 @onready var hurtbox: Area3D = $RotationPoint/Hurtbox
 @onready var animation_tree: AnimationTree = $AnimationTree
-@export var SPEED = 5.0
+@export var base_speed : float
+@export var dash_strength : float
+var SPEED : float
 const JUMP_VELOCITY = 4.5
 @onready var rotation_point: Node3D = $RotationPoint
 var mouse_delta : Vector2  
 
 func _ready() -> void:
+	SPEED = base_speed
 	animation_tree.active = true
 	Input.mouse_mode = 2
 
@@ -45,9 +48,12 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	if Input.is_action_just_pressed("dash") :
-		if not animation_tree.get("parameters/oneshot_attack/active") :
-			animation_tree["parameters/attack/blend_position"] = anim_dir
-			animation_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		if not animation_tree.get("parameters/oneshot_dash/active") :
+			SPEED = base_speed + dash_strength
+			animation_tree["parameters/dash/blend_position"] = anim_dir
+			animation_tree["parameters/oneshot_dash/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+			await animation_tree.animation_finished
+			SPEED = base_speed
 	
 	move_and_slide()
 	

@@ -39,8 +39,10 @@ text = "test"
 [node name="Player" parent="." unique_id=467720308 instance=ExtResource("2_rhy7j")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9346148, 0)
+dash_strength = 3.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1665702939]
+light_color = Color(0.23137255, 0.20784314, 0.34901962, 1)
 light_indirect_energy = 5.132
 light_volumetric_fog_energy = 1.2
 light_angular_distance = 45.89
