@@ -769,6 +769,7 @@ animation_player = NodePath("AnimationPlayer")
 SPEED = 2.5
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1326933241]
+active = false
 tree_root = SubResource("AnimationNodeBlendTree_jc63w")
 anim_player = NodePath("../AnimationPlayer")
 parameters/oneshot_attack/active = false

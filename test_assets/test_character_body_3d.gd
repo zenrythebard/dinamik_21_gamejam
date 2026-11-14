@@ -43,7 +43,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-		
+	
+	if Input.is_action_just_pressed("dash") :
+		if not animation_tree.get("parameters/oneshot_attack/active") :
+			animation_tree["parameters/attack/blend_position"] = anim_dir
+			animation_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	
 	move_and_slide()
 	
 	animation_tree["parameters/walk/blend_position"] = anim_dir
