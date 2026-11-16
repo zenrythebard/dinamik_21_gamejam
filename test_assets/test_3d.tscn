@@ -46,7 +46,7 @@ dash_strength = 3.0
 light_color = Color(0.23137255, 0.20784314, 0.34901962, 1)
 light_indirect_energy = 5.132
 light_volumetric_fog_energy = 1.2
-light_angular_distance = 45.89
+light_angular_distance = 14.18
 light_specular = 7.04
 light_bake_mode = 1
 
@@ -136,3 +136,4 @@ shape = SubResource("ConcavePolygonShape3D_e4pr7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42801857, 1.7996109, -13.626884)
 target = NodePath("../Player")
 base_speed = 2.5
+base_health = 50.0
