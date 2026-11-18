@@ -1,6 +1,28 @@
 [gd_scene format=3 uid="uid://0v3d0xdojfyd"]
 
-[ext_resource type="Texture2D" uid="uid://cwvj2a33ebq1e" path="res://UI SKETCH.png" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://dok3mvto3mayj" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_healthbar/healthbar_fullimage.png" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://bedk6unbx4ni3" path="res://interface/ui_asset/ui_gameplay/patokan ui/Sekiro_ShadowsDieTwice04142020-033705.jpg" id="1_amv7k"]
+[ext_resource type="Texture2D" uid="uid://k85n3c8tgicq" path="res://interface/ui_asset/ui_gameplay/patokan ui/Crisis-Core-Final-Fantasy-VII-Reunion-scaled.jpg" id="1_gpiub"]
+[ext_resource type="Texture2D" uid="uid://dk8pregu4awyl" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_healthbar/healthbar_fill.png" id="2_1xsix"]
+[ext_resource type="Texture2D" uid="uid://bnucgee6iqx6v" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_healthbar/healthbar.png" id="3_rftc2"]
+[ext_resource type="Texture2D" uid="uid://cgxs50ojdyin3" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_healthbar/skillbar.png" id="4_61f8s"]
+[ext_resource type="Texture2D" uid="uid://l7dl7otekdit" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_healthbar/skillbar_fill.png" id="5_g10ll"]
+[ext_resource type="Texture2D" uid="uid://chpk4sdtpuect" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_healthbar/skillbar_glow.png" id="5_gpiub"]
+[ext_resource type="Texture2D" uid="uid://b7ksy076k7iyo" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_healthbar/hpbar_decoration.png" id="6_gpiub"]
+[ext_resource type="Texture2D" uid="uid://c6d30trj1s1af" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/statemeter_fullimage.png" id="9_g10ll"]
+[ext_resource type="Texture2D" uid="uid://d0kidd0kyqtqe" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/statebar_decoration.png" id="11_rgb5v"]
+[ext_resource type="Texture2D" uid="uid://b1m345nfvghce" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateframe_left.png" id="12_np8ax"]
+[ext_resource type="Texture2D" uid="uid://vkd2ipulho1c" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateframe_right.png" id="13_8w6vd"]
+[ext_resource type="Texture2D" uid="uid://cbfl4k00th0k0" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateframe_left_fill.png" id="14_shnbk"]
+[ext_resource type="Texture2D" uid="uid://debkbg1ncgw6h" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateframe_right_fill.png" id="15_o2hcl"]
+[ext_resource type="Texture2D" uid="uid://dgvdhlnq7pmng" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateIcon_frame.png" id="16_gh5fi"]
+[ext_resource type="Texture2D" uid="uid://e7obubj1o6gj" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateIcon_neutral.png" id="17_nx880"]
+[ext_resource type="Texture2D" uid="uid://62tw0brj5a01" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateIcon_boosted.png" id="18_drihh"]
+[ext_resource type="Texture2D" uid="uid://btprt8co4istq" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateIcon_caution.png" id="19_d5hpo"]
+[ext_resource type="Texture2D" uid="uid://dt2ihg6hkoaoe" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/statebar_frame_50%.png" id="20_y8web"]
+[ext_resource type="Texture2D" uid="uid://bty2hm361r05e" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateTitle_caution.png" id="21_cj3fo"]
+[ext_resource type="Texture2D" uid="uid://ofpwu5uc4rkn" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateTitle_throtteled.png" id="22_tcfrd"]
+[ext_resource type="Texture2D" uid="uid://b7002hva3jymj" path="res://interface/ui_asset/ui_gameplay/ui_gameplay_statemeter/stateTitle_boosted.png" id="23_qb75m"]
 
 [node name="Hud" type="Control" unique_id=1045852115]
 layout_mode = 3
@@ -9,17 +31,188 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
-[node name="UiSketch" type="Sprite2D" parent="." unique_id=1758667768]
-position = Vector2(348.00003, 944.75)
-scale = Vector2(0.588172, 0.588172)
-texture = ExtResource("1_37p78")
-region_enabled = true
-region_rect = Rect2(133.64172, 912.8346, 1161.6189, 465.6239)
+[node name="SekiroShadowsDieTwice04142020033705" type="Sprite2D" parent="." unique_id=394431192]
+visible = false
+modulate = Color(1, 1, 1, 0.28627452)
+position = Vector2(967.7778, 544)
+scale = Vector2(1.0018518, 1.0018518)
+texture = ExtResource("1_amv7k")
 
-[node name="UiSketch2" type="Sprite2D" parent="." unique_id=1787596248]
-position = Vector2(496.99976, 140.99994)
-scale = Vector2(0.58183634, 0.58183634)
+[node name="CrisisCoreFinalFantasyViiReunionScaled" type="Sprite2D" parent="." unique_id=204010810]
+visible = false
+modulate = Color(1, 1, 1, 0.24705882)
+position = Vector2(958.77795, 540.99994)
+scale = Vector2(0.7472222, 0.7472222)
+texture = ExtResource("1_gpiub")
+
+[node name="HealthbarFullimage" type="Sprite2D" parent="." unique_id=574911086]
+modulate = Color(1, 1, 1, 0.18039216)
+position = Vector2(405.875, 957.00006)
+scale = Vector2(2.6103516, 2.6103516)
 texture = ExtResource("1_37p78")
+metadata/_edit_lock_ = true
+
+[node name="HP&SKILL Bar" type="Node2D" parent="." unique_id=911649419]
+position = Vector2(8, -25)
+
+[node name="Healthbar" type="Sprite2D" parent="HP&SKILL Bar" unique_id=1334101123]
+texture_filter = 3
+position = Vector2(461.91986, 947.7665)
+scale = Vector2(2.6408014, 2.6623254)
+texture = ExtResource("3_rftc2")
 region_enabled = true
-region_rect = Rect2(1732.5096, 1182.6929, 1726.3907, 501.44128)
+region_rect = Rect2(52.000015, 92, 200.79999, 46.399994)
+
+[node name="SkillbarGlow" type="Sprite2D" parent="HP&SKILL Bar" unique_id=1605421372]
+position = Vector2(390.99997, 1016.5)
+scale = Vector2(2.5408804, 2.1458333)
+texture = ExtResource("5_gpiub")
+region_enabled = true
+region_rect = Rect2(47.039886, 117.439926, 159.28003, 48.40001)
+
+[node name="Skillbar" type="Sprite2D" parent="HP&SKILL Bar" unique_id=1353074108]
+texture_filter = 3
+position = Vector2(394.01385, 1017)
+scale = Vector2(2.5998018, 2.51389)
+texture = ExtResource("4_61f8s")
+region_enabled = true
+region_rect = Rect2(56.800003, 123.2, 140, 36)
+
+[node name="SkillbarFill" type="Sprite2D" parent="HP&SKILL Bar" unique_id=517719324]
+position = Vector2(392, 1014)
+scale = Vector2(2.5588236, 2.22)
+texture = ExtResource("5_g10ll")
+region_enabled = true
+region_rect = Rect2(57.60002, 121.59999, 136.79999, 37.600006)
+
+[node name="HealthbarFill" type="Sprite2D" parent="HP&SKILL Bar" unique_id=1013983868]
+position = Vector2(471.00006, 948.58)
+scale = Vector2(2.573171, 2.5)
+texture = ExtResource("2_1xsix")
+region_enabled = true
+region_rect = Rect2(73.973236, 102.6795, 164.94559, 25.675117)
+
+[node name="HpbarDecoration" type="Sprite2D" parent="HP&SKILL Bar" unique_id=1541070654]
+position = Vector2(164.00003, 958)
+scale = Vector2(2.5606062, 2.560606)
+texture = ExtResource("6_gpiub")
+region_enabled = true
+region_rect = Rect2(0, 85.71991, 78.71988, 66.880005)
+
+[node name="HpbarDecoration2" type="Sprite2D" parent="HP&SKILL Bar" unique_id=1293921529]
+position = Vector2(576, 1009)
+scale = Vector2(2.5606062, 2.560606)
+texture = ExtResource("6_gpiub")
+region_enabled = true
+region_rect = Rect2(179.91992, 127.99992, 30.799988, 21.12001)
+
+[node name="StatemeterFullimage" type="Sprite2D" parent="." unique_id=1410564130]
+visible = false
+modulate = Color(1, 1, 1, 0.2)
+texture_filter = 3
+position = Vector2(439.99997, 98.999985)
+scale = Vector2(2.8013117, 2.8013117)
+texture = ExtResource("9_g10ll")
+region_enabled = true
+region_rect = Rect2(0, 78.399994, 256, 81.59999)
+metadata/_edit_lock_ = true
+
+[node name="StatebarDecoration" type="Sprite2D" parent="." unique_id=1196680289]
+position = Vector2(488.835, 105)
+scale = Vector2(2.8105907, 2.65)
+texture = ExtResource("11_rgb5v")
+region_enabled = true
+region_rect = Rect2(35.199753, 96.7999, 220.80025, 49.600037)
+
+[node name="StateframeLeft" type="Sprite2D" parent="." unique_id=180808764]
+position = Vector2(340.5, 106.17753)
+scale = Vector2(2.7631578, 2.435)
+texture = ExtResource("12_np8ax")
+region_enabled = true
+region_rect = Rect2(34.71988, 109.51993, 114.400024, 25.520004)
+
+[node name="StateframeRight" type="Sprite2D" parent="." unique_id=1788864894]
+position = Vector2(629.27625, 105)
+scale = Vector2(2.7474139, 2.435)
+texture = ExtResource("13_8w6vd")
+region_enabled = true
+region_rect = Rect2(137.6799, 105.11992, 117.440094, 33.440018)
+
+[node name="StateframeLeftFill" type="Sprite2D" parent="." unique_id=891804733]
+visible = false
+position = Vector2(350, 102.00001)
+scale = Vector2(2.7241378, 2.1774998)
+texture = ExtResource("14_shnbk")
+region_enabled = true
+region_rect = Rect2(37.12857, 107.75992, 116.39133, 25.520004)
+
+[node name="StateframeRightFill" type="Sprite2D" parent="." unique_id=1905887632]
+visible = false
+position = Vector2(637.5, 105.83875)
+scale = Vector2(2.7053561, 2.1879342)
+texture = ExtResource("15_o2hcl")
+region_enabled = true
+region_rect = Rect2(143.16858, 110.39991, 112.83142, 23.15194)
+
+[node name="StateIconFrame" type="Sprite2D" parent="." unique_id=1376865710]
+position = Vector2(155.183, 107.175)
+scale = Vector2(2.707, 2.707)
+texture = ExtResource("16_gh5fi")
+region_enabled = true
+region_rect = Rect2(0, 99.199905, 52.39969, 45.60002)
+
+[node name="StateIconNeutral" type="Sprite2D" parent="." unique_id=2045220706]
+visible = false
+position = Vector2(151, 123.99999)
+scale = Vector2(2.8333333, 2.8333337)
+texture = ExtResource("17_nx880")
+region_enabled = true
+region_rect = Rect2(12.799728, 112.79991, 24.800018, 29.600021)
+
+[node name="StateIconBoosted" type="Sprite2D" parent="." unique_id=182196882]
+visible = false
+position = Vector2(152.735, 124.495)
+scale = Vector2(2.64, 2.64)
+texture = ExtResource("18_drihh")
+region_enabled = true
+region_rect = Rect2(6.3997345, 110.39992, 37.600006, 36.80002)
+
+[node name="StateIconCaution" type="Sprite2D" parent="." unique_id=1687589984]
+position = Vector2(150, 116)
+scale = Vector2(2.675, 2.675)
+texture = ExtResource("19_d5hpo")
+region_enabled = true
+region_rect = Rect2(11.199722, 103.99991, 25.600037, 42.400024)
+
+[node name="StatebarFrame50_" type="Sprite2D" parent="." unique_id=1124319056]
+position = Vector2(443.41174, 106)
+scale = Vector2(2.8235292, 2.8235292)
+texture = ExtResource("20_y8web")
+region_enabled = true
+region_rect = Rect2(0, 95.99991, 256, 51.200027)
+
+[node name="StateTitleCaution" type="Sprite2D" parent="." unique_id=611230020]
+position = Vector2(479.5357, 104.25)
+scale = Vector2(2.7500002, 2.7499998)
+texture = ExtResource("21_cj3fo")
+region_enabled = true
+region_rect = Rect2(62.399765, 99.99991, 162.40009, 42.400024)
+
+[node name="StateTitleThrotteled" type="Sprite2D" parent="." unique_id=108128079]
+visible = false
+position = Vector2(484.79312, 113.75)
+scale = Vector2(2.637931, 2.637931)
+texture = ExtResource("22_tcfrd")
+offset = Vector2(1.27, -0.775)
+region_enabled = true
+region_rect = Rect2(48.79976, 109.599915, 200.00012, 29.600021)
+
+[node name="StateTitleBoosted" type="Sprite2D" parent="." unique_id=821233781]
+visible = false
+position = Vector2(495.075, 106)
+scale = Vector2(2.465, 2.465)
+texture = ExtResource("23_qb75m")
+region_enabled = true
+region_rect = Rect2(70.399765, 107.199905, 148.80011, 28.800018)
