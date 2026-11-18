@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://skj78n5g6epw"]
 
 [ext_resource type="Script" uid="uid://gxi1aa0nmian" path="res://test_assets/ninja.gd" id="1_071xj"]
+[ext_resource type="Shader" uid="uid://cj4f0rcoojrdf" path="res://test_assets/tint.gdshader" id="2_vsbne"]
 [ext_resource type="Texture2D" uid="uid://cfyjdavolww0x" path="res://test_assets/Guard Attack.png" id="2_wurd0"]
 [ext_resource type="Texture2D" uid="uid://d4nvh577j784e" path="res://test_assets/guard sprite (1).png" id="3_4t13w"]
+[ext_resource type="Script" uid="uid://crqrrdbydw018" path="res://test_assets/hitbox_ninja.gd" id="4_4t13w"]
+[ext_resource type="Script" uid="uid://8iljajrobc7b" path="res://test_assets/animated_sprite_3d.gd" id="4_sq7cc"]
+[ext_resource type="Script" uid="uid://dq8yo0j2dr1n5" path="res://test_assets/hurtbox_ninja.gd" id="5_4t13w"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ugkvk"]
 animation = &"attack_forward"
@@ -17,8 +21,9 @@ animation = &"attack_right"
 animation = &"attack_backward"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_5xeig"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_ugkvk")
-blend_point_0/pos = Vector2(0, 0.1)
+blend_point_0/pos = Vector2(0, -0.1)
 blend_point_0/name = &"attack_forward"
 blend_point_1/node = SubResource("AnimationNodeAnimation_taggi")
 blend_point_1/pos = Vector2(-0.1, 0)
@@ -27,7 +32,7 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_indeb")
 blend_point_2/pos = Vector2(0.1, 0)
 blend_point_2/name = &"attack_right"
 blend_point_3/node = SubResource("AnimationNodeAnimation_2avmo")
-blend_point_3/pos = Vector2(0, -0.1)
+blend_point_3/pos = Vector2(0, 0.1)
 blend_point_3/name = &"attack_backward"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_071xj"]
@@ -65,7 +70,7 @@ blend_point_3/pos = Vector2(-0.1, 0)
 blend_point_3/name = &"walk_left"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jc63w"]
-graph_offset = Vector2(-360.90137, 105.309494)
+graph_offset = Vector2(-444.2254, 96.168274)
 nodes/output/position = Vector2(560, 176)
 nodes/oneshot_attack/node = SubResource("AnimationNodeOneShot_wurd0")
 nodes/oneshot_attack/position = Vector2(304, 144)
@@ -117,10 +122,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [&"walk_forward"]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_x8nt6"]
 resource_name = "attack_backward"
-length = 0.05
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -140,7 +157,7 @@ tracks/1/path = NodePath("AnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -157,10 +174,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15833333, 0.26275647, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_3388h"]
 resource_name = "attack_forward"
-length = 0.05
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -180,7 +209,7 @@ tracks/1/path = NodePath("AnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.03333333),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -196,11 +225,23 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.26188752, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_bs657"]
 resource_name = "attack_side"
-length = 0.05
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -220,7 +261,7 @@ tracks/1/path = NodePath("AnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -232,15 +273,27 @@ tracks/2/path = NodePath("AnimatedSprite3D:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15833333, 0.2624306, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_o1qfp"]
 resource_name = "attack_right"
-length = 0.05
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -260,7 +313,7 @@ tracks/1/path = NodePath("AnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -276,6 +329,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15833333, 0.26123583, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_or781"]
@@ -480,6 +545,21 @@ _data = {
 &"walk_right": SubResource("Animation_t5mk5")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h7nl"]
+atlas = ExtResource("3_4t13w")
+region = Rect2(0, 0, 37, 50)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sq7cc"]
+render_priority = 0
+shader = ExtResource("2_vsbne")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 0.2, 0.2, 1)
+shader_parameter/tex = SubResource("AtlasTexture_0h7nl")
+shader_parameter/use_billboard = true
+shader_parameter/growth_amt = 0.0
+shader_parameter/tint = 0.5
+shader_parameter/fade = 0.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_071xj"]
 atlas = ExtResource("2_wurd0")
 region = Rect2(74, 0, 37, 50)
@@ -511,6 +591,22 @@ region = Rect2(0, 100, 37, 50)
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6whf"]
 atlas = ExtResource("2_wurd0")
 region = Rect2(0, 150, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsbne"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(37, 250, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugkvk"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(37, 300, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taggi"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(37, 350, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_indeb"]
+atlas = ExtResource("2_wurd0")
+region = Rect2(37, 400, 37, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0q54"]
 atlas = ExtResource("3_4t13w")
@@ -547,10 +643,6 @@ region = Rect2(74, 350, 37, 50)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mcnk3"]
 atlas = ExtResource("3_4t13w")
 region = Rect2(74, 400, 37, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0h7nl"]
-atlas = ExtResource("3_4t13w")
-region = Rect2(0, 0, 37, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mer1j"]
 atlas = ExtResource("3_4t13w")
@@ -658,6 +750,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vsbne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugkvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taggi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_indeb")
+}],
+"loop": 1,
+"name": &"attack_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_l0q54")
 }, {
 "duration": 1.0,
@@ -754,19 +863,28 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fe3hl"]
+radius = 0.1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1icll"]
 radius = 4.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_071xj"]
-radius = 1.663
+radius = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4t13w"]
+radius = 0.1
+height = 1.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sq7cc"]
+points = PackedVector3Array(0, 0, 0, -1, 0, -1, -2, -1, -2, 2, -1, -2, 1, 0, -1, 2, 0.5, -2, -2, 0.5, -2)
 
 [node name="Ninja" type="CharacterBody3D" unique_id=1572494235 node_paths=PackedStringArray("sprite", "animation_tree", "animation_player")]
 script = ExtResource("1_071xj")
 sprite = NodePath("AnimatedSprite3D")
 animation_tree = NodePath("AnimationTree")
 animation_player = NodePath("AnimationPlayer")
-SPEED = 2.5
+base_health = 10.0
+weight = 15.0
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1326933241]
 active = false
@@ -777,17 +895,19 @@ parameters/oneshot_attack/internal_active = false
 parameters/oneshot_attack/request = 0
 parameters/walk/blend_position = Vector2(0.023608804, 0.06849313)
 parameters/blend_walk/blend_amount = 0.0
-parameters/attack/blend_position = Vector2(0, 0)
+parameters/attack/blend_position = Vector2(0.0016233921, 0.13242006)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1989594591]
 libraries/ = SubResource("AnimationLibrary_4vfer")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1007263892]
 transform = Transform3D(3.945, 0, 0, 0, 3.8105772, 1.0210412, 0, -1.0210412, 3.8105772, 0, 0, 0)
+material_overlay = SubResource("ShaderMaterial_sq7cc")
 billboard = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_1icll")
 animation = &"walk_forward"
+script = ExtResource("4_sq7cc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1862275785]
 shape = SubResource("CapsuleShape3D_fe3hl")
@@ -805,8 +925,29 @@ debug_color = Color(8.7236984e-08, 0.11272059, 0.13832667, 0.42)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneOfAttack" unique_id=1417662229]
 shape = SubResource("CylinderShape3D_071xj")
 
+[node name="Hitbox" type="Area3D" parent="." unique_id=1911091732]
+monitorable = false
+script = ExtResource("4_4t13w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1164403991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14830351, 0)
+shape = SubResource("CapsuleShape3D_4t13w")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=2128364079 node_paths=PackedStringArray("main_body")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07343745, 0)
+monitoring = false
+monitorable = false
+script = ExtResource("5_4t13w")
+main_body = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=125661826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054153442, 0, 0.24905556)
+shape = SubResource("ConvexPolygonShape3D_sq7cc")
+debug_color = Color(1, 1, 1, 0.41960785)
+
 [connection signal="body_entered" from="ZoneOfControl" to="." method="_on_zone_of_control_body_entered"]
 [connection signal="body_exited" from="ZoneOfControl" to="." method="_on_zone_of_control_body_exited"]
 [connection signal="area_entered" from="ZoneOfAttack" to="." method="_on_zone_of_attack_area_entered"]
 [connection signal="body_entered" from="ZoneOfAttack" to="." method="_on_zone_of_attack_body_entered"]
 [connection signal="body_exited" from="ZoneOfAttack" to="." method="_on_zone_of_attack_body_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

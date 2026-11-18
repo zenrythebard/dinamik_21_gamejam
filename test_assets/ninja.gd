@@ -1,54 +1,72 @@
 class_name Ninja
 extends CharacterBody3D
-
+@onready var hurtbox: HurtboxNinja = $Hurtbox
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var target : CharacterBody3D
 @onready var player : CharacterBody3D = %Player
 var target_pos : Vector3
 var follow_player : bool = true
 var player_in_range : bool = false
-var first_strike : bool = false
+var attack_initiative : bool = true
 var able_attack : bool = false
 var attack_in_range : bool = false
+var hover_in_range : bool = false
+var retreat_step : bool = false
+var finished_retreating : bool = false
 var player_facing : Vector2 
 @export var sprite: AnimatedSprite3D 
 @export var animation_tree: AnimationTree 
 @export var animation_player: AnimationPlayer  
-
-@export var SPEED = 5.0
+var attack_timer : float = 0
+@export var base_speed : float
+var SPEED : float
 const JUMP_VELOCITY = 4.5
-	
+@export var attack_interval : float = 230
+@export var base_health : float = 100
+var health : float
+@export var base_damage : float = 5
+var damage : float
+signal death
+
 func _ready() -> void:
+	health = clampf(100.0, 0.0, base_health)
+	damage = base_damage
+	health = base_health
+	SPEED = base_speed
 	animation_tree.active = true
+	death.connect(on_death)
 	
 func _physics_process(delta: float) -> void:
+	if not target:
+		return
+	hurtbox.look_at(Vector3(player.global_position.x, global_position.y,player.global_position.z))
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
 	# Handle jump.
 	#if is_on_floor():
 		#velocity.y = JUMP_VELOCITY
-	ninja_behaviour()
 	move_and_slide()
+	move_and_collide(knockback)
+	knockback = knockback.move_toward(Vector3.ZERO, 0.1)
+	ninja_behaviour()
 	direction_relative_to_player()
 
 func ninja_behaviour():
 	#moving to zone control
-	if target:
-		if follow_player:
-			if player_in_range == false:
-				run_to_player()
-			elif first_strike == true:
-				attack_behaviour()
-			else:
-				hover_behaviour()
-	else:
-		idle_behaviour()
+	if not target or not follow_player:
+		return
+	if retreat_step:
+		retreat_step_behaviour()
+	elif attack_initiative:
+		if attack_in_range:
+			attack_behaviour()
+		else:
+			run_to_player()
+
 	
 	
 func run_to_player():
-	await get_tree().create_timer(0.1).timeout
 	target_pos = target.position
 	nav_agent.target_position = target_pos
 	var next_path_pos : Vector3 = nav_agent.get_next_path_position()
@@ -56,10 +74,46 @@ func run_to_player():
 	velocity = direction * SPEED
 	animation_tree["parameters/walk/blend_position"] = player_facing
 	animation_tree["parameters/blend_walk/blend_amount"] = 1
+
+func retreat_step_behaviour():
+	if attack_initiative == true:
+		return
+	animation_tree["parameters/walk/blend_position"] = player_facing
+	animation_tree["parameters/blend_walk/blend_amount"] = 1
+	if player_position_relative_x == "east" :
+		velocity = Vector3(1,0,0)
+	if player_position_relative_x == "west" :
+		velocity = Vector3(-1,0,0)
+	if player_position_relative_z == "south" :
+		velocity = Vector3(0,0,-1)
+	if player_position_relative_z == "north" :
+		velocity = Vector3(0,0,1)
+	if not player_in_range:
+		retreat_step = false
+		attack_initiative = true
+	elif player_in_range:
+		attack_timer += 1
+		if attack_timer > attack_interval:
+			attack_timer = 0
+			retreat_step = false
+			attack_initiative = true
 	
 func hover_behaviour():
+	await get_tree().create_timer(0.1).timeout
+	velocity.x = move_toward(velocity.x, 0, SPEED)
+	velocity.z = move_toward(velocity.z, 0, SPEED)
+	animation_tree["parameters/blend_walk/blend_amount"] = 0
+	await get_tree().create_timer(0.5).timeout
+	animation_tree["parameters/walk/blend_position"] = player_facing
+	animation_tree["parameters/blend_walk/blend_amount"] = 1
+	velocity.x = 2
+	velocity.z = 2
+	await get_tree().create_timer(2).timeout
+	velocity.x = -2
+	velocity.z = 2
+	await get_tree().create_timer(2).timeout
+	attack_initiative = true
 	
-	return
 	
 func idle_behaviour():
 	await get_tree().create_timer(0.1).timeout
@@ -68,15 +122,15 @@ func idle_behaviour():
 	animation_tree["parameters/blend_walk/blend_amount"] = 0
 	
 func attack_behaviour():
-	if attack_in_range == false :
-		run_to_player()
-	else :
-		animation_tree["parameters/walk/blend_position"] = player_facing
+		if animation_tree.get("parameters/oneshot_attack/active") == true:
+			return
+		attack_initiative = false
+		animation_tree["parameters/attack/blend_position"] = player_facing
 		animation_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-		print ("attacked")
-		player #animation and collision to attack player (not finished)
-		first_strike = false
-		
+		retreat_step = true
+		#player #animation and collision to attack player (not finished)
+		SPEED = 2
+
 var player_position_relative_x : String
 var player_position_relative_z : String
 
@@ -107,7 +161,7 @@ func delta_distance_to_player_calc() -> bool:
 func _on_zone_of_control_body_entered(body: Node3D) -> void:
 	if body is Player:
 		player_in_range = true
-		print("inside")
+ 
 
 func _on_zone_of_control_body_exited(body: Node3D) -> void:
 	if body is Player:
@@ -116,9 +170,20 @@ func _on_zone_of_control_body_exited(body: Node3D) -> void:
 func _on_zone_of_attack_body_entered(body: Node3D) -> void:
 	if body is Player:
 		attack_in_range = true
-		print ("attack_able")
+ 
 		
 func _on_zone_of_attack_body_exited(body: Node3D) -> void:
 	if body is Player:
 		attack_in_range = false
 		
+var knockback : Vector3
+@export var weight : float = 1
+func _on_hitbox_area_entered(area: HurtboxPlayer) -> void:
+	health -= area.main_body.damage
+	var knock_dir : Vector3 = -(area.global_position - global_position).normalized()
+	knockback = knock_dir * 10 / weight
+	if health < 1:
+		emit_signal("death")
+		
+func on_death():
+	queue_free()

@@ -22,15 +22,17 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [node name="Node3D" type="Node3D" unique_id=763767127]
 
-[node name="DebugHud" type="Control" parent="." unique_id=586792392]
+[node name="DebugHud" type="Control" parent="." unique_id=586792392 node_paths=PackedStringArray("player")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_l0q54")
-fps_bool = true
+health_bool = true
+player = NodePath("../Player")
 
 [node name="DebugText" type="TextEdit" parent="DebugHud" unique_id=2125451446]
+visible = false
 layout_mode = 0
 offset_right = 119.0
 offset_bottom = 56.0
@@ -39,11 +41,13 @@ text = "test"
 [node name="Player" parent="." unique_id=467720308 instance=ExtResource("2_rhy7j")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9346148, 0)
+dash_strength = 3.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1665702939]
+light_color = Color(0.23137255, 0.20784314, 0.34901962, 1)
 light_indirect_energy = 5.132
 light_volumetric_fog_energy = 1.2
-light_angular_distance = 45.89
+light_angular_distance = 14.18
 light_specular = 7.04
 light_bake_mode = 1
 
@@ -132,3 +136,5 @@ shape = SubResource("ConcavePolygonShape3D_e4pr7")
 [node name="Ninja" parent="." unique_id=1572494235 node_paths=PackedStringArray("target") instance=ExtResource("3_e4pr7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42801857, 1.7996109, -13.626884)
 target = NodePath("../Player")
+base_speed = 2.5
+base_health = 50.0
