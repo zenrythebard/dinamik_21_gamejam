@@ -8,6 +8,7 @@ func _ready() -> void:
 	debug_text.text = "null"
 
 func _process(delta: float) -> void:
+	print(Engine.get_frames_per_second())
 	var fps_check : String 
 	var health_check : String 
 	if fps_bool:
@@ -15,5 +16,7 @@ func _process(delta: float) -> void:
 	else: 
 		fps_check = ""
 	if health_bool:
+		if not player:
+			return
 		health_check = str(player.health) + " HP"
 	debug_text.text = fps_check + health_check

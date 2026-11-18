@@ -12,13 +12,16 @@ var mouse_delta : Vector2
 var health : float
 @export var base_damage : float = 5
 var damage : float
+signal player_death
 
 func _ready() -> void:
 	damage = base_damage
+	health = clampf(100.0, 0.0, base_health)
 	health = base_health
 	SPEED = base_speed
 	animation_tree.active = true
 	Input.mouse_mode = 2
+	player_death.connect(on_death)
 
 func _physics_process(delta: float) -> void:
 	
@@ -131,3 +134,8 @@ func _on_hitbox_area_entered(area: HurtboxNinja) -> void:
 	health -= area.main_body.damage
 	var knock_dir : Vector3 = -(area.global_position - global_position).normalized()
 	knockback = knock_dir * 10 / weight
+	if health < 1:
+		emit_signal("player_death")
+		
+func on_death():
+	queue_free()

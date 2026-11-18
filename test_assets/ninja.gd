@@ -29,6 +29,7 @@ var damage : float
 signal death
 
 func _ready() -> void:
+	health = clampf(100.0, 0.0, base_health)
 	damage = base_damage
 	health = base_health
 	SPEED = base_speed
@@ -36,6 +37,8 @@ func _ready() -> void:
 	death.connect(on_death)
 	
 func _physics_process(delta: float) -> void:
+	if not target:
+		return
 	hurtbox.look_at(Vector3(player.global_position.x, global_position.y,player.global_position.z))
 	# Add the gravity.
 	if not is_on_floor():
@@ -50,7 +53,6 @@ func _physics_process(delta: float) -> void:
 	direction_relative_to_player()
 
 func ninja_behaviour():
-	print(attack_initiative)
 	#moving to zone control
 	if not target or not follow_player:
 		return
