@@ -1096,6 +1096,8 @@ script = ExtResource("5_o1qfp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14830351, 0)
 shape = SubResource("CapsuleShape3D_uj04i")
 
+[node name="OverloadValueTimer" type="Timer" parent="." unique_id=532666473]
+
 [connection signal="frame_changed" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_frame_changed"]
 [connection signal="body_entered" from="RotationPoint/Front" to="." method="_on_front_body_entered"]
 [connection signal="body_exited" from="RotationPoint/Front" to="." method="_on_front_body_exited"]

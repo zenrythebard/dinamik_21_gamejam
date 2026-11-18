@@ -32,6 +32,7 @@ health_bool = true
 player = NodePath("../Player")
 
 [node name="DebugText" type="TextEdit" parent="DebugHud" unique_id=2125451446]
+visible = false
 layout_mode = 0
 offset_right = 119.0
 offset_bottom = 56.0

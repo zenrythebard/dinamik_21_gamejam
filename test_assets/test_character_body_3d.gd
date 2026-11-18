@@ -1,5 +1,6 @@
 class_name Player
 extends CharacterBody3D
+
 @onready var hurtbox: Area3D = $RotationPoint/Hurtbox
 @onready var animation_tree: AnimationTree = $AnimationTree
 @export var base_speed : float
@@ -13,18 +14,24 @@ var health : float
 @export var base_damage : float = 5
 var damage : float
 signal player_death
+var overload_value : float
 
 func _ready() -> void:
 	damage = base_damage
-	health = clampf(100.0, 0.0, base_health)
 	health = base_health
 	SPEED = base_speed
 	animation_tree.active = true
 	Input.mouse_mode = 2
 	player_death.connect(on_death)
-
-func _physics_process(delta: float) -> void:
+	overload_value = clampf(0.0, 0.0, 300)
 	
+func _physics_process(delta: float) -> void:
+	var h_clamp = clampf(health, 0.0, base_health)
+	health = h_clamp
+	var o_clamp = clampf(overload_value, 0.0, 300)
+	overload_value = o_clamp
+	
+	print (overload_value)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -63,7 +70,8 @@ func _physics_process(delta: float) -> void:
 			animation_tree["parameters/oneshot_dash/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 			await animation_tree.animation_finished
 			SPEED = base_speed
-	
+		overload_value += 5
+		
 	move_and_slide()
 	move_and_collide(knockback)
 	knockback = knockback.move_toward(Vector3.ZERO, 0.1)
@@ -74,7 +82,7 @@ func _physics_process(delta: float) -> void:
 		if not animation_tree.get("parameters/oneshot_attack/active") :
 			animation_tree["parameters/attack/blend_position"] = anim_dir
 			animation_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-			
+		overload_value += 10
 				
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -138,4 +146,12 @@ func _on_hitbox_area_entered(area: HurtboxNinja) -> void:
 		emit_signal("player_death")
 		
 func on_death():
+	Input.mouse_mode = 0
 	queue_free()
+
+@onready var overload_decay: Timer = $OverloadValueTimer
+func overload_meter() :
+	if overload_value >= 0:
+		
+		return
+	
