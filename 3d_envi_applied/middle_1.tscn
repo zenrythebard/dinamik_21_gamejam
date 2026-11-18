@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bcy3tcm8kvb4l"]
+
+[ext_resource type="PackedScene" uid="uid://d3s0jswrauvn7" path="res://3d_assets/middle 1.glb" id="1_ifaw4"]
+
+[node name="middle 1" unique_id=1570546967 instance=ExtResource("1_ifaw4")]
