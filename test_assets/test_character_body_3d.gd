@@ -15,6 +15,11 @@ var health : float
 var damage : float
 signal player_death
 var overload_value : float
+@onready var decay_timer: Timer = $DecayTimer
+var can_decay : bool
+@export var decay_value : float = 0.1
+@export var overload_damage_buff : float = 5
+@export var overload_damage_debuff : float = 2
 
 func _ready() -> void:
 	damage = base_damage
@@ -24,6 +29,7 @@ func _ready() -> void:
 	Input.mouse_mode = 2
 	player_death.connect(on_death)
 	overload_value = clampf(0.0, 0.0, 300)
+	can_decay = false
 	
 func _physics_process(delta: float) -> void:
 	var h_clamp = clampf(health, 0.0, base_health)
@@ -31,7 +37,10 @@ func _physics_process(delta: float) -> void:
 	var o_clamp = clampf(overload_value, 0.0, 300)
 	overload_value = o_clamp
 	
+	print (base_speed)
+	print (dash_strength)
 	print (overload_value)
+	print (damage)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -83,7 +92,9 @@ func _physics_process(delta: float) -> void:
 			animation_tree["parameters/attack/blend_position"] = anim_dir
 			animation_tree["parameters/oneshot_attack/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 		overload_value += 10
-				
+	overload_meter()
+	overload_decay_value()
+	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_delta = event.relative
@@ -149,9 +160,45 @@ func on_death():
 	Input.mouse_mode = 0
 	queue_free()
 
-@onready var overload_decay: Timer = $OverloadValueTimer
+
 func overload_meter() :
-	if overload_value >= 0:
-		
+	if overload_value > 0:
+		overload_decay_value()
+		if overload_value > 100 && overload_value < 200 :
+			overload_rush_state()
+		elif overload_value > 200.1 && overload_value < 275 :
+			overload_exhaust_state()
+		elif overload_value > 275.1 :
+			overload_over_state()
+		elif overload_value > 300 :
+			return
+		else :
+			overload_normal_state()
+			
+			
+	if overload_value == 0:
 		return
+	
+func overload_decay_value() :
+	decay_timer.start()
+	overload_value -= decay_value
+	print("action starts")
+	
+func overload_normal_state() :
+	damage = base_damage
+	base_speed = 3
+	dash_strength = 5
+func overload_rush_state() :
+	damage = overload_damage_buff
+	base_speed = 4
+	dash_strength = 7
+func overload_exhaust_state() :
+	damage = overload_damage_debuff
+	base_speed = 1.5
+	dash_strength = 2.5
+func overload_over_state() :
+	damage = overload_damage_debuff
+	base_speed = 0.5
+	dash_strength = 1
+	
 	

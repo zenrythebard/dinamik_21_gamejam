@@ -1006,6 +1006,8 @@ script = ExtResource("1_x8nt6")
 base_speed = 3.0
 dash_strength = 5.0
 base_health = 10.0
+decay_value = 0.2
+overload_damage_buff = 10.0
 weight = 15.0
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1171916046]
@@ -1096,7 +1098,8 @@ script = ExtResource("5_o1qfp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14830351, 0)
 shape = SubResource("CapsuleShape3D_uj04i")
 
-[node name="OverloadValueTimer" type="Timer" parent="." unique_id=532666473]
+[node name="DecayTimer" type="Timer" parent="." unique_id=1403246128]
+process_callback = 0
 
 [connection signal="frame_changed" from="AnimatedSprite3D" to="AnimatedSprite3D" method="_on_frame_changed"]
 [connection signal="body_entered" from="RotationPoint/Front" to="." method="_on_front_body_entered"]
