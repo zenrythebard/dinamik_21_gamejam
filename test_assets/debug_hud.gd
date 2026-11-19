@@ -5,10 +5,9 @@ class_name DebugHud extends Control
 @export var player : Player
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	debug_text.text = "null"
+	debug_text.text = ""
 
 func _process(delta: float) -> void:
-	########print(Engine.get_frames_per_second())
 	var fps_check : String 
 	var health_check : String 
 	if fps_bool:
